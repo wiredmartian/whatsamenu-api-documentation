@@ -24,9 +24,11 @@
         - [Search Restaurants](#search-restaurants)              
         - [List Restaurants By Owner](#list-restaurants-by-owner)
         - [Create Restaurant Menu](#create-restaurant-menu)      
-        - [Get Restaurant Menu](#get-restaurant-menu)            
+        - [Get Restaurant Menu](#get-restaurant-menu)
+        - [List Restaurant Menus](#list-restaurant-menus)
         - [Get Restaurant QR Code](#get-restaurant-qr-code)
       - [Menu](#menu)
+        - [Get Menu](#get-menu) 
         - [Delete Menu](#delete-menu)
         - [Create Menu Group*](#create-menu-group)
         - [Get Menu's Group By id*](#create-menu-group)
@@ -803,6 +805,35 @@ Creates a menu and associates it with a restaurant
 }
 ```
 
+### List Restaurant Menus
+
+Returns a list of restaurant menu, and no additional menu data such as menu items, groups or ingredients
+
+#### Auth
+
+- Anonymous
+
+#### Request
+
+`GET v1/restaurants/{id}/menus`
+
+#### Example response
+
+`[200 - Ok]`
+
+```json
+[
+  {
+    "menuId": "4",
+    "name": "Butcher Boys Morningside",
+    "summary": null,
+    "restaurantId": "10",
+    "menuGroups": null,
+    "updated": "2023-04-09 15:38:59",
+    "created": "2023-04-09 15:38:59"
+  }
+]
+```
 
 
 ### Get Restaurant Menu
@@ -978,6 +1009,217 @@ Creates a menu group/section/category within the main menu
   "error": "explicit deny: user not permitted to modified resource"
 }
 ```
+
+### Get Menu
+
+Returns the menu of the restaurant with all associated items
+
+**Menu Structure**
+- Menu
+    - Menu Groups[]
+        - Menu Items[]
+            - Ingredients[]
+
+#### Auth
+
+- Anonymous
+
+#### Request
+
+`GET v1/menu/{id}`
+
+#### Example response
+
+`[200 - Ok]`
+```json
+{
+  "menuId": "2",
+  "name": "Dukkah Restaurant & Bar",
+  "summary": "Dukkah Restaurant & Bar on Durban’s Florida road is a high point on the durban dining scene - a modern and luxuriant social hub with an upscale cocktail bar and lounge. ",
+  "restaurantId": "8",
+  "menuGroups": [
+    {
+      "menuId": "2",
+      "menuGroupId": "9",
+      "name": "Starters",
+      "summary": "",
+      "items": [
+        {
+          "menuItemId": "15",
+          "menuId": "2",
+          "menuGroupId": "9",
+          "name": "Chicken Croquettes",
+          "summary": "Thyme, anchovies, onion, garlic, mustard, chilli, Grana Padano, celery dressing",
+          "description": "Thyme, anchovies, onion, garlic, mustard, chilli, Grana Padano, celery dressing",
+          "imageUrl": "",
+          "price": 110,
+          "ingredients": [],
+          "updated": "2023-04-03 20:37:23",
+          "created": "2023-04-03 20:37:23"
+        },
+        {
+          "menuItemId": "16",
+          "menuId": "2",
+          "menuGroupId": "9",
+          "name": "Confit Caprese Salad",
+          "summary": "Exotic tomatoes, orange segment, basil-mozzarella cheese",
+          "description": "Exotic tomatoes, orange segment, basil-mozzarella cheese",
+          "imageUrl": "",
+          "price": 115,
+          "ingredients": [],
+          "updated": "2023-04-03 20:38:44",
+          "created": "2023-04-03 20:38:44"
+        },
+        {
+          "menuItemId": "18",
+          "menuId": "2",
+          "menuGroupId": "9",
+          "name": "Suicide Wings",
+          "summary": "With Blue Cheese Sauce",
+          "description": "",
+          "imageUrl": "",
+          "price": 90,
+          "ingredients": [],
+          "updated": "2023-04-03 20:40:14",
+          "created": "2023-04-03 20:40:14"
+        },
+        {
+          "menuItemId": "19",
+          "menuId": "2",
+          "menuGroupId": "9",
+          "name": "Thai Fish Cakes",
+          "summary": "Thai style, panko, coriander, soy, chili, ginger",
+          "description": "Thai style, panko, coriander, soy, chili, ginger",
+          "imageUrl": "",
+          "price": 110,
+          "ingredients": [],
+          "updated": "2023-04-03 20:41:30",
+          "created": "2023-04-03 20:41:30"
+        },
+        {
+          "menuItemId": "21",
+          "menuId": "2",
+          "menuGroupId": "9",
+          "name": "Saute Chicken Livers",
+          "summary": "Chorizo, chili flakes, creamy napoli",
+          "description": "Chorizo, chili flakes, creamy napoli",
+          "imageUrl": "",
+          "price": 80,
+          "ingredients": [],
+          "updated": "2023-04-03 21:14:48",
+          "created": "2023-04-03 20:52:12"
+        },
+        {
+          "menuItemId": "22",
+          "menuId": "2",
+          "menuGroupId": "9",
+          "name": "Salt and Pepper Squid",
+          "summary": "Deep fried, asian slaw, aioli",
+          "description": "Deep fried, asian slaw, aioli",
+          "imageUrl": "",
+          "price": 95,
+          "ingredients": [],
+          "updated": "2023-04-03 20:54:54",
+          "created": "2023-04-03 20:54:54"
+        },
+        {
+          "menuItemId": "23",
+          "menuId": "2",
+          "menuGroupId": "9",
+          "name": "West Coast Mussels",
+          "summary": "Nappe of shallots, cider, bacon, thyme, ciabatta",
+          "description": "Nappe of shallots, cider, bacon, thyme, ciabatta",
+          "imageUrl": "",
+          "price": 130,
+          "ingredients": [],
+          "updated": "2023-04-03 20:58:50",
+          "created": "2023-04-03 20:58:50"
+        }
+      ],
+      "updated": "2023-04-02 15:58:53",
+      "created": "2023-04-02 15:58:53"
+    },
+    {
+      "menuId": "2",
+      "menuGroupId": "11",
+      "name": "Pasta",
+      "summary": "",
+      "items": [
+        {
+          "menuItemId": "26",
+          "menuId": "2",
+          "menuGroupId": "11",
+          "name": "Pulled Braised Short-Ribs Tagliatelle",
+          "summary": "Grain mustard, home-made tagliatelle, cilantro, jus",
+          "description": "Grain mustard, home-made tagliatelle, cilantro, jus",
+          "imageUrl": "",
+          "price": 170,
+          "ingredients": [],
+          "updated": "2023-04-04 18:10:34",
+          "created": "2023-04-04 18:10:34"
+        },
+        {
+          "menuItemId": "27",
+          "menuId": "2",
+          "menuGroupId": "11",
+          "name": "Chili Prawn Fettuccine",
+          "summary": "Napoli, coriander, grated pecorino",
+          "description": "Napoli, coriander, grated pecorino",
+          "imageUrl": "",
+          "price": 175,
+          "ingredients": [],
+          "updated": "2023-04-04 18:11:12",
+          "created": "2023-04-04 18:11:12"
+        },
+        {
+          "menuItemId": "28",
+          "menuId": "2",
+          "menuGroupId": "11",
+          "name": "Basil & Chicken Penne",
+          "summary": "Pesto, pine kernels, shaved parmesan",
+          "description": "Pesto, pine kernels, shaved parmesan",
+          "imageUrl": "",
+          "price": 145,
+          "ingredients": [],
+          "updated": "2023-04-04 18:12:01",
+          "created": "2023-04-04 18:12:01"
+        },
+        {
+          "menuItemId": "29",
+          "menuId": "2",
+          "menuGroupId": "11",
+          "name": "Calamari & Chorizo Rigatoni",
+          "summary": "Kalamata olives, charred red pepper, tomato salsa",
+          "description": "Kalamata olives, charred red pepper, tomato salsa",
+          "imageUrl": "",
+          "price": 165,
+          "ingredients": [],
+          "updated": "2023-04-04 18:12:43",
+          "created": "2023-04-04 18:12:43"
+        },
+        {
+          "menuItemId": "30",
+          "menuId": "2",
+          "menuGroupId": "11",
+          "name": "Seafood Linguini",
+          "summary": "Chardonnay cream, prawns, mussels, squid, chili, gremolata",
+          "description": "Chardonnay cream, prawns, mussels, squid, chili, gremolata",
+          "imageUrl": "",
+          "price": 195,
+          "ingredients": [],
+          "updated": "2023-04-04 18:13:39",
+          "created": "2023-04-04 18:13:39"
+        }
+      ],
+      "updated": "2023-04-02 15:59:27",
+      "created": "2023-04-02 15:59:27"
+    }
+  ],
+  "updated": "2023-04-02 15:37:51",
+  "created": "2023-04-02 15:37:51"
+}
+```
+
 
 ### Delete Menu
 
@@ -1607,6 +1849,10 @@ Returns a list of all allergens
 ### Upload Asset
 
 Single unified resource for uploading **menu** and **restaurant** related images
+
+### Image Criteria
+- PNG / JPG / JPEG
+- < 1MB
 
 #### Auth
 
