@@ -107,7 +107,7 @@ The Bearer token is passed through the `Authorization` header. And the API key c
 |---------------|----------------------------------------------------------------------------|
 | Authorization | Bearer Token                                                               |
 | X-API-Key     | API Key                                                                    |
-| Content-Type  | - `application/json` <br/> - `multipart/form-data` <br/> text/event-stream |
+| Content-Type  | - `application/json` <br/> - `multipart/form-data` <br/> - `text/event-stream` |
 
 
 ## API
