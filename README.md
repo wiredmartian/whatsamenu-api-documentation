@@ -107,7 +107,7 @@ The Bearer token is passed through the `Authorization` header. And the API key c
 |---------------|----------------------------------------------------------------------------|
 | Authorization | Bearer Token                                                               |
 | X-API-Key     | API Key                                                                    |
-| Content-Type  | - `application/json` <br/> - `multipart/form-data` <br/> - `text/event-stream` |
+| Content-Type  | - `application/json` <br/> - `multipart/form-data` <br/> text/event-stream |
 
 
 ## API
@@ -117,9 +117,9 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 
 | Action                                                      | Method | Resource                                                        | Current Status |
 |-------------------------------------------------------------|--------|-----------------------------------------------------------------|----------------|
-| [Create New User Account](#new-user-account)                | POST   | v1/users/sign-up                                                | `DONE`         |
-| [User Login](#login-user)                                   | POST   | v1/users/sign-in                                                | `DONE`         |
-| [Generate API Key](#generate-api-key)                       | POST   | v1/users/api-key                                                | `DONE`         |
+| [Create New User Account](#new-user-account)                | POST   | v1/auth/sign-up                                                | `DONE`         |
+| [User Login](#login-user)                                   | POST   | v1/auth/sign-in                                                | `DONE`         |
+| [Generate API Key](#generate-api-key)                       | POST   | v1/auth/api-key                                                | `DONE`         |
 | [List Restaurants](#list-restaurants)                       | GET    | v1/restaurants                                                  | `IN PROGRESS`  |
 | [Create Restaurant](#new-restaurant)                        | POST   | v1/restaurants                                                  | `DONE`         |
 | [Update Restaurant](#update-restaurant)                     | PATCH  | v1/restaurants                                                  | `IN PROGRESS`  |
@@ -154,7 +154,7 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | [Get Allergen](#get-allergen)                               | GET    | v1/allergens/**{id}**                                           | `DONE`         |
 | [Upload Image Asset](#upload-image-asset)                   | PUT    | v1/upload                                                       | `DONE`         |
 
-## Users
+## Auth 
 
 ### New User Account
 
@@ -166,7 +166,7 @@ Signing up for a new account
 
 #### Request
 
-`POST v1/users/sign-up`
+`POST v1/auth/sign-up`
 
 #### Example body
 
@@ -206,7 +206,7 @@ Login user into the API
 
 #### Request
 
-`POST v1/users/sign-in`
+`POST v1/auth/sign-in`
 
 #### Example body
 
@@ -247,7 +247,7 @@ Generating a new key invalidates any previously existing key for a user.
 
 #### Request
 
-`POST v1/users/api-key`
+`POST v1/auth/api-key`
 
 #### Example
 
