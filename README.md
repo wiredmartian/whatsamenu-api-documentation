@@ -4,57 +4,57 @@
 
 - [WhatsAMenu API](#whatsamenu-api)
     - [Supported Enums](#supported-enums)
-      - [Used Status Codes](#http-status-codes) 
-      - [Upload Types](#upload-type-entities)
-      - [Provinces](#provinces)
+        - [Used Status Codes](#http-status-codes)
+        - [Upload Types](#upload-type-entities)
+        - [Provinces](#provinces)
     - [Authentication](#authentication)
-      - [Accepted Headers](#accepted-headers)
+        - [Accepted Headers](#accepted-headers)
     - [API](#api)
-      - [Users](#users)
-        - [Create New User Account](#new-user-account)
-        - [User Login](#login-user)                   
-        - [Generate API Key](#generate-api-key)
-      - [Restaurants](#restaurants)
-        - [List Restaurants](#list-restaurants)                  
-        - [Create Restaurant](#new-restaurant)                   
-        - [Update Restaurant](#update-restaurant)                
-        - [Get Restaurant](#get-restaurant)                      
-        - [Delete Restaurant](#delete-restaurant)                
-        - [List Restaurants Near Me](#restaurants-near-me)       
-        - [Search Restaurants](#search-restaurants)              
-        - [List Restaurants By Owner](#list-restaurants-by-owner)
-        - [Create Restaurant Menu](#create-restaurant-menu)
-        - [List Restaurant Menus](#list-restaurant-menus)
-        - [Get Restaurant QR Code](#get-restaurant-qr-code)
-      - [Menu](#menu)
-        - [Ask About Menu](#ask-about-menu)
-        - [Get Menu](#get-menu) 
-        - [Delete Menu](#delete-menu)
-        - [Create Menu Group*](#create-menu-group)
-        - [Get Menu's Group By id*](#create-menu-group)
-      - [Menu Group](#menu-group)
-        - [Get Menu Group By id](#get-menu-group-by-id)
-        - [Update Menu Group](#update-menu-group)
-        - [Delete Menu Group](#delete-menu-group)
-        - [Create Menu Group's Menu Item*](#create-menu-item)
-      - [Menu Item](#menu-item)
-        - [Get Menu Item](#get-menu-item)
-        - [Update Menu Item](#update-menu-item)
+        - [Auth](#auth)
+            - [Create New User Account](#new-user-account)
+            - [User Login](#login-user)
+            - [Generate API Key](#generate-api-key)
+        - [Restaurants](#restaurants)
+            - [List Restaurants](#list-restaurants)
+            - [Create Restaurant](#new-restaurant)
+            - [Update Restaurant](#update-restaurant)
+            - [Get Restaurant](#get-restaurant)
+            - [Delete Restaurant](#delete-restaurant)
+            - [List Restaurants Near Me](#restaurants-near-me)
+            - [Search Restaurants](#search-restaurants)
+            - [List Restaurants By Owner](#list-restaurants-by-owner)
+            - [Create Restaurant Menu](#create-restaurant-menu)
+            - [List Restaurant Menus](#list-restaurant-menus)
+            - [Get Restaurant QR Code](#get-restaurant-qr-code)
+        - [Menu](#menu)
+            - [Ask About Menu](#ask-about-menu)
+            - [Get Menu](#get-menu)
+            - [Delete Menu](#delete-menu)
+            - [Create Menu Group*](#create-menu-group)
+            - [Get Menu's Group By id*](#create-menu-group)
+        - [Menu Group](#menu-group)
+            - [Get Menu Group By id](#get-menu-group-by-id)
+            - [Update Menu Group](#update-menu-group)
+            - [Delete Menu Group](#delete-menu-group)
+            - [Create Menu Group's Menu Item*](#create-menu-item)
+        - [Menu Item](#menu-item)
+            - [Get Menu Item](#get-menu-item)
+            - [Update Menu Item](#update-menu-item)
 
 <!-- /TOC -->
 <!-- Generated with https://marketplace.visualstudio.com/items?itemName=AlanWalk.markdown-toc -->
 
 # WhatsAMenu API
 
-**WhatsAMenu** is a food/drinks restaurant menu API allowing consumers to be as verbose as possible about their 
-food items and drinks. It allows you to specify **categories**, **ingredients**, **allergens**. It 
+**WhatsAMenu** is a food/drinks restaurant menu API allowing consumers to be as verbose as possible about their
+food items and drinks. It allows you to specify **categories**, **ingredients**, **allergens**. It
 even allows you to add images for menu items (dish) and each ingredient for the dish.
 
 This API only returns data in a **JSON** format. It also accepts data in **JSON** format, unless otherwise specified.
 
 ### Supported Enums
 
-#### Provinces 
+#### Provinces
 
 | Province      | Description                         |
 |---------------|-------------------------------------|
@@ -91,11 +91,11 @@ These are the only response status codes to be expected from this API
 | [500] - InternalServerError | 
 
 ## Authentication
-- Bearer 
+- Bearer
 - API Key
 
-**WhatsAMenu API** uses either a **Bearer** token or the **API Key**. You receive a bearer token when you log into 
-the system. You need the bearer token to generate the initial API key. Any subsequent keys can be generated using 
+**WhatsAMenu API** uses either a **Bearer** token or the **API Key**. You receive a bearer token when you log into
+the system. You need the bearer token to generate the initial API key. Any subsequent keys can be generated using
 a bearer token or an API key.
 
 ### Accepted Headers
@@ -103,10 +103,10 @@ a bearer token or an API key.
 The Bearer token is passed through the `Authorization` header. And the API key can **only** be passed through the
 `X-API-Key` header.
 
-| Key           | Allowed                                                                    |
-|---------------|----------------------------------------------------------------------------|
-| Authorization | Bearer Token                                                               |
-| X-API-Key     | API Key                                                                    |
+| Key           | Allowed                                                                        |
+|---------------|--------------------------------------------------------------------------------|
+| Authorization | Bearer Token                                                                   |
+| X-API-Key     | API Key                                                                        |
 | Content-Type  | - `application/json` <br/> - `multipart/form-data` <br/> - `text/event-stream` |
 
 
@@ -115,46 +115,46 @@ The Bearer token is passed through the `Authorization` header. And the API key c
 
 These are all the version 1 `/v1/` endpoints available to manage restaurants, accounts and menu.
 
-| Action                                                      | Method | Resource                                                        | Current Status |
-|-------------------------------------------------------------|--------|-----------------------------------------------------------------|----------------|
+| Action                                                      | Method | Resource                                                         | Current Status |
+|-------------------------------------------------------------|--------|------------------------------------------------------------------|----------------|
 | [Create New User Account](#new-user-account)                | POST   | `v1/auth/sign-up`                                                | `DONE`         |
 | [User Login](#login-user)                                   | POST   | `v1/auth/sign-in`                                                | `DONE`         |
 | [Generate API Key](#generate-api-key)                       | POST   | `v1/auth/api-key`                                                | `DONE`         |
-| [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                  | `IN PROGRESS`  |
-| [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                  | `DONE`         |
-| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                  | `IN PROGRESS`  |
-| [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                         | `DONE`         |
-| [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                   | `DONE`         |
-| [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                         | `IN PROGRESS`  |
-| [List Restaurants Near Me](#restaurants-near-me)            | POST   | `v1/restaurants/near-me`                                          | `DONE`         |
-| [Search Restaurants](#search-restaurants)                   | GET    | `v1/restaurants/search?query={term}&limit={limit}` | `DONE`         |
-| [List Restaurants By Owner](#list-restaurants-by-owner)     | GET    | `v1/restaurants/owner`                                            | `DONE`         |
-| [Create Restaurant Menu](#create-restaurant-menu)           | POST   | `v1/restaurants/{id}/menu`                                    | `DONE`         |
-| [Get Restaurant QR Code](#get-restaurant-qr-code)           | GET    | `v1/restaurants/{id}/qrcode`                                  | `DONE`         |
-| [Get Menu](#get-menu)                                       | GET    | `v1/menu/{id}`                                                | `DONE`         |
-| [Ask About Menu](#ask-about-menu)                           | GET    | `v1/menu/enquire?menuId={menuId}&userId={userId}&prompt={query}`  | `IN PROGRESS`  |
-| [Delete Menu](#delete-menu)                                 | DELETE | `v1/menu/{id} `                                               | `DONE`         |
-| [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                     | `DONE`         |
-| [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                     | `DONE`         |
-| [Update Menu Group](#update-menu-group)                     | PATCH  | `v1/menu-group/{id}`                                          | `DONE`         |
-| [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                          | `DONE`         |
-| [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                               | `DONE`         |
-| [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                               | `DONE`         |
-| [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                           | `DONE`         |
-| [Update Menu Item](#update-menu-item)                       | PATCH  | `v1/menu-item/{id}`                                           | `DONE`         |
-| [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                           | `IN PROGRESS`  |
-| [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | `v1/menu-item/{id}/allergens`                                 | `DONE`         |
-| [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | `v1/menu-item/{id}/allergens`                                 | `DONE`         |
-| [Delete Menu Item Allergen](#delete-menu-item-allergen)     | DELETE | `v1/menu-item/{id}/allergens/{allergenId}`                | `IN PROGRESS`  |
-| [Create Menu Item Ingredient](#create-menu-item-ingredient) | POST   | `v1/menu-item/{id}/ingredients`                               | `DONE`         |
-| [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                               | `DONE`         |
-| [Update Ingredient](#update-ingredient)                     | PATCH  | `v1/ingredients/{id}`                                         | `DONE`         |
-| [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                         | `IN PROGRESS`  |
-| [List Allergens](#list-allergens)                           | GET    | `v1/allergens`                                                    | `DONE`         |
-| [Get Allergen](#get-allergen)                               | GET    | `v1/allergens/{id}`                                           | `DONE`         |
-| [Upload Image Asset](#upload-image-asset)                   | PUT    | `v1/upload`                                                       | `DONE`         |
+| [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                 | `IN PROGRESS`  |
+| [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                 | `DONE`         |
+| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                 | `IN PROGRESS`  |
+| [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                            | `DONE`         |
+| [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                      | `DONE`         |
+| [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                            | `IN PROGRESS`  |
+| [List Restaurants Near Me](#restaurants-near-me)            | POST   | `v1/restaurants/near-me`                                         | `DONE`         |
+| [Search Restaurants](#search-restaurants)                   | GET    | `v1/restaurants/search?query={term}&limit={limit}`               | `DONE`         |
+| [List Restaurants By Owner](#list-restaurants-by-owner)     | GET    | `v1/restaurants/owner`                                           | `DONE`         |
+| [Create Restaurant Menu](#create-restaurant-menu)           | POST   | `v1/restaurants/{id}/menu`                                       | `DONE`         |
+| [Get Restaurant QR Code](#get-restaurant-qr-code)           | GET    | `v1/restaurants/{id}/qrcode`                                     | `DONE`         |
+| [Get Menu](#get-menu)                                       | GET    | `v1/menu/{id}`                                                   | `DONE`         |
+| [Ask About Menu](#ask-about-menu)                           | GET    | `v1/menu/enquire?menuId={menuId}&userId={userId}&prompt={query}` | `IN PROGRESS`  |
+| [Delete Menu](#delete-menu)                                 | DELETE | `v1/menu/{id} `                                                  | `DONE`         |
+| [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                        | `DONE`         |
+| [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                        | `DONE`         |
+| [Update Menu Group](#update-menu-group)                     | PATCH  | `v1/menu-group/{id}`                                             | `DONE`         |
+| [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                             | `DONE`         |
+| [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
+| [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
+| [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                              | `DONE`         |
+| [Update Menu Item](#update-menu-item)                       | PATCH  | `v1/menu-item/{id}`                                              | `DONE`         |
+| [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                              | `IN PROGRESS`  |
+| [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
+| [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
+| [Delete Menu Item Allergen](#delete-menu-item-allergen)     | DELETE | `v1/menu-item/{id}/allergens/{allergenId}`                       | `IN PROGRESS`  |
+| [Create Menu Item Ingredient](#create-menu-item-ingredient) | POST   | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
+| [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
+| [Update Ingredient](#update-ingredient)                     | PATCH  | `v1/ingredients/{id}`                                            | `DONE`         |
+| [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                            | `IN PROGRESS`  |
+| [List Allergens](#list-allergens)                           | GET    | `v1/allergens`                                                   | `DONE`         |
+| [Get Allergen](#get-allergen)                               | GET    | `v1/allergens/{id}`                                              | `DONE`         |
+| [Upload Image Asset](#upload-image-asset)                   | PUT    | `v1/upload`                                                      | `DONE`         |
 
-## Auth 
+## Auth
 
 ### New User Account
 
@@ -183,7 +183,7 @@ Signing up for a new account
 
 ```json
 {
-    "data": "user account created"
+  "data": "user account created"
 }
 ```
 
@@ -238,7 +238,7 @@ Login user into the API
 
 ### Generate API Key
 
-Generates a new API Key. **WARN**: a user and API key exist in a **one-to-one** relationship. 
+Generates a new API Key. **WARN**: a user and API key exist in a **one-to-one** relationship.
 Generating a new key invalidates any previously existing key for a user.
 
 #### Auth
@@ -303,7 +303,6 @@ Consists of restaurant information, and it's address including geo-coordinates (
 | country   | false    | Optional country                 |
 | latitude  | true     | Latitude                         |
 | longitude | true     | Longitude                        |
-| owner     | true     | Owner User Id                    |
 | name      | true     | Restaurant name                  |
 | summary   | true     | Short restaurant headline        |
 
@@ -320,7 +319,6 @@ Consists of restaurant information, and it's address including geo-coordinates (
   "latitude": 12.34385833,
   "longitude": -13.238437,
   "name": "Kota Place Restaurant",
-  "owner": "451",
   "summary": "We sell the best kotas in Morningside"
 }
 ```
@@ -442,7 +440,7 @@ Returns a list of unordered restaurants
 
 #### Auth
 
-- Anonymous
+- API key
 
 #### Request
 
@@ -493,7 +491,7 @@ Gets a restaurant by its id
 
 #### Auth
 
-- Anonymous
+- API key
 
 #### Request
 
@@ -542,7 +540,7 @@ Lists restaurants found near specified geolocation coordinates. The `distance` i
 
 #### Auth
 
-- Anonymous
+- API key
 
 #### Request
 
@@ -600,7 +598,7 @@ Lists restaurants found near specified geolocation coordinates. The `distance` i
 
 ### Delete Restaurant
 
-Marks a restaurant for deletion. **NB** Deleting a restaurant will also remove any items associated with it, 
+Marks a restaurant for deletion. **NB** Deleting a restaurant will also remove any items associated with it,
 such as a **menu**, **address**, **menu items**, **groups**, and **ingredients**.
 
 #### Auth
@@ -630,7 +628,7 @@ Search for restaurants by name
 
 #### Auth
 
-- Anonymous
+- API key
 
 #### Request
 
@@ -695,8 +693,7 @@ Get a list of restaurant by owner (current authenticated user)
 
 #### Auth
 
-- Bearer
-- **or** API Key
+- API key
 
 #### Request
 
@@ -809,7 +806,7 @@ Returns a list of restaurant menu, and no additional menu data such as menu item
 
 #### Auth
 
-- Anonymous
+- API key
 
 #### Request
 
@@ -840,7 +837,7 @@ Returns a QR Code image which is just a link to the restaurant's menu
 
 #### Auth
 
-- Anonymous
+- API key
 
 #### Request
 
@@ -852,7 +849,7 @@ Returns a QR Code image which is just a link to the restaurant's menu
 
 ```json
 {
-	"imageUri": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlB..."
+  "imageUri": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlB..."
 }
 ```
 
@@ -861,7 +858,7 @@ Returns a QR Code image which is just a link to the restaurant's menu
 
 ### Ask About Menu
 
-Ask any questions related to the menu, such as allergens, food type, your budget etc. This uses an AI model 
+Ask any questions related to the menu, such as allergens, food type, your budget etc. This uses an AI model
 underneath with the context of the menu
 
 - Query Params
@@ -879,7 +876,7 @@ underneath with the context of the menu
 
 #### Example Response
 
-This returns a stream of JSON responses. 
+This returns a stream of JSON responses.
 This is best used with an <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventSource">EventSource</a>
 
 | Data                         | Time         |
@@ -892,10 +889,6 @@ This is best used with an <a href="https://developer.mozilla.org/en-US/docs/Web/
 | ```{"content":" a"}```       | 22:08:48.062 | 
 | ```{"content":" R250"}```    | 22:08:48.063 | 
 | ```{"content":" budget"}```  | 22:08:48.063 | 
-
-
-
-
 
 
 
@@ -950,7 +943,7 @@ Returns the menu of the restaurant with all associated items
 
 #### Auth
 
-- Anonymous
+- API key
 
 #### Request
 
@@ -973,71 +966,6 @@ Returns the menu of the restaurant with all associated items
       "summary": "",
       "items": [
         {
-          "menuItemId": "15",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Chicken Croquettes",
-          "summary": "Thyme, anchovies, onion, garlic, mustard, chilli, Grana Padano, celery dressing",
-          "description": "Thyme, anchovies, onion, garlic, mustard, chilli, Grana Padano, celery dressing",
-          "imageUrl": "",
-          "price": 110,
-          "ingredients": [],
-          "updated": "2023-04-03 20:37:23",
-          "created": "2023-04-03 20:37:23"
-        },
-        {
-          "menuItemId": "16",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Confit Caprese Salad",
-          "summary": "Exotic tomatoes, orange segment, basil-mozzarella cheese",
-          "description": "Exotic tomatoes, orange segment, basil-mozzarella cheese",
-          "imageUrl": "",
-          "price": 115,
-          "ingredients": [],
-          "updated": "2023-04-03 20:38:44",
-          "created": "2023-04-03 20:38:44"
-        },
-        {
-          "menuItemId": "18",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Suicide Wings",
-          "summary": "With Blue Cheese Sauce",
-          "description": "",
-          "imageUrl": "",
-          "price": 90,
-          "ingredients": [],
-          "updated": "2023-04-03 20:40:14",
-          "created": "2023-04-03 20:40:14"
-        },
-        {
-          "menuItemId": "19",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Thai Fish Cakes",
-          "summary": "Thai style, panko, coriander, soy, chili, ginger",
-          "description": "Thai style, panko, coriander, soy, chili, ginger",
-          "imageUrl": "",
-          "price": 110,
-          "ingredients": [],
-          "updated": "2023-04-03 20:41:30",
-          "created": "2023-04-03 20:41:30"
-        },
-        {
-          "menuItemId": "21",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Saute Chicken Livers",
-          "summary": "Chorizo, chili flakes, creamy napoli",
-          "description": "Chorizo, chili flakes, creamy napoli",
-          "imageUrl": "",
-          "price": 80,
-          "ingredients": [],
-          "updated": "2023-04-03 21:14:48",
-          "created": "2023-04-03 20:52:12"
-        },
-        {
           "menuItemId": "22",
           "menuId": "2",
           "menuGroupId": "9",
@@ -1049,19 +977,6 @@ Returns the menu of the restaurant with all associated items
           "ingredients": [],
           "updated": "2023-04-03 20:54:54",
           "created": "2023-04-03 20:54:54"
-        },
-        {
-          "menuItemId": "23",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "West Coast Mussels",
-          "summary": "Nappe of shallots, cider, bacon, thyme, ciabatta",
-          "description": "Nappe of shallots, cider, bacon, thyme, ciabatta",
-          "imageUrl": "",
-          "price": 130,
-          "ingredients": [],
-          "updated": "2023-04-03 20:58:50",
-          "created": "2023-04-03 20:58:50"
         }
       ],
       "updated": "2023-04-02 15:58:53",
@@ -1085,58 +1000,6 @@ Returns the menu of the restaurant with all associated items
           "ingredients": [],
           "updated": "2023-04-04 18:10:34",
           "created": "2023-04-04 18:10:34"
-        },
-        {
-          "menuItemId": "27",
-          "menuId": "2",
-          "menuGroupId": "11",
-          "name": "Chili Prawn Fettuccine",
-          "summary": "Napoli, coriander, grated pecorino",
-          "description": "Napoli, coriander, grated pecorino",
-          "imageUrl": "",
-          "price": 175,
-          "ingredients": [],
-          "updated": "2023-04-04 18:11:12",
-          "created": "2023-04-04 18:11:12"
-        },
-        {
-          "menuItemId": "28",
-          "menuId": "2",
-          "menuGroupId": "11",
-          "name": "Basil & Chicken Penne",
-          "summary": "Pesto, pine kernels, shaved parmesan",
-          "description": "Pesto, pine kernels, shaved parmesan",
-          "imageUrl": "",
-          "price": 145,
-          "ingredients": [],
-          "updated": "2023-04-04 18:12:01",
-          "created": "2023-04-04 18:12:01"
-        },
-        {
-          "menuItemId": "29",
-          "menuId": "2",
-          "menuGroupId": "11",
-          "name": "Calamari & Chorizo Rigatoni",
-          "summary": "Kalamata olives, charred red pepper, tomato salsa",
-          "description": "Kalamata olives, charred red pepper, tomato salsa",
-          "imageUrl": "",
-          "price": 165,
-          "ingredients": [],
-          "updated": "2023-04-04 18:12:43",
-          "created": "2023-04-04 18:12:43"
-        },
-        {
-          "menuItemId": "30",
-          "menuId": "2",
-          "menuGroupId": "11",
-          "name": "Seafood Linguini",
-          "summary": "Chardonnay cream, prawns, mussels, squid, chili, gremolata",
-          "description": "Chardonnay cream, prawns, mussels, squid, chili, gremolata",
-          "imageUrl": "",
-          "price": 195,
-          "ingredients": [],
-          "updated": "2023-04-04 18:13:39",
-          "created": "2023-04-04 18:13:39"
         }
       ],
       "updated": "2023-04-02 15:59:27",
@@ -1257,7 +1120,7 @@ Lists all menu groups (categories) found under a menu
 
 #### Auth
 
-- Anonymous
+- API Key
 
 #### Request
 
@@ -1304,7 +1167,7 @@ List all menu items under a menu group/category/section
 
 #### Auth
 
-- Anonymous
+- API Key
 
 #### Request
 
@@ -1382,7 +1245,7 @@ Gets a menu item by id
 
 #### Auth
 
-- Anonymous
+- API Key
 
 #### Request
 
@@ -1424,11 +1287,11 @@ Update a menu item
 
 ```json
 {
-	"name": "Nice Ice Cream",
-	"summary": "Best ice cream in the Milky-Way",
-	"description": "Melting ice-cream",
-	"price": 20.39,
-	"menuGroupId": 20
+  "name": "Nice Ice Cream",
+  "summary": "Best ice cream in the Milky-Way",
+  "description": "Melting ice-cream",
+  "price": 20.39,
+  "menuGroupId": 20
 }
 ```
 
@@ -1506,7 +1369,7 @@ Creates/adds an allergen to a menu item
 
 ```json
 {
-	"data": "ingredient created"
+  "data": "ingredient created"
 }
 ```
 
@@ -1534,7 +1397,7 @@ Creates/adds an allergen to a menu item
 
 ```json
 {
-	"allergenId": "7"
+  "allergenId": "7"
 }
 ```
 
@@ -1560,7 +1423,7 @@ Creates/adds an allergen to a menu item
 
 ```json
 {
-	"error": "MenuItem or Allergen was not found"
+  "error": "MenuItem or Allergen was not found"
 }
 ```
 
@@ -1570,7 +1433,7 @@ List all ingredients of a menu item
 
 #### Auth
 
-- Anonymous
+- API Key
 
 #### Request
 
@@ -1607,7 +1470,7 @@ Lists all allergens for a menu item
 
 #### Auth
 
-- Anonymous
+- API Key
 
 #### Request
 
@@ -1707,7 +1570,7 @@ Looks up an allergen by its id
 
 #### Auth
 
-- Anonymous
+- API Key
 
 #### Request
 
@@ -1733,7 +1596,7 @@ Returns a list of all allergens
 
 #### Auth
 
-- Anonymous
+- API Key
 
 #### Request
 
@@ -1745,18 +1608,18 @@ Returns a list of all allergens
 ```json
 [
   {
-      "allergenId": "1",
-      "name": "Wheat",
-      "summary": "Wheat",
-      "updated": "",
-      "created": ""
+    "allergenId": "1",
+    "name": "Wheat",
+    "summary": "Wheat",
+    "updated": "",
+    "created": ""
   },
   {
-      "allergenId": "2",
-      "name": "Nuts",
-      "summary": "Nuts",
-      "updated": "",
-      "created": ""
+    "allergenId": "2",
+    "name": "Nuts",
+    "summary": "Nuts",
+    "updated": "",
+    "created": ""
   }
 ]
 ```
