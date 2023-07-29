@@ -107,7 +107,7 @@ The Bearer token is passed through the `Authorization` header. And the API key c
 |---------------|----------------------------------------------------------------------------|
 | Authorization | Bearer Token                                                               |
 | X-API-Key     | API Key                                                                    |
-| Content-Type  | - `application/json` <br/> - `multipart/form-data` <br/> text/event-stream |
+| Content-Type  | - `application/json` <br/> - `multipart/form-data` <br/> - `text/event-stream` |
 
 
 ## API
@@ -117,42 +117,42 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 
 | Action                                                      | Method | Resource                                                        | Current Status |
 |-------------------------------------------------------------|--------|-----------------------------------------------------------------|----------------|
-| [Create New User Account](#new-user-account)                | POST   | v1/auth/sign-up                                                | `DONE`         |
-| [User Login](#login-user)                                   | POST   | v1/auth/sign-in                                                | `DONE`         |
-| [Generate API Key](#generate-api-key)                       | POST   | v1/auth/api-key                                                | `DONE`         |
-| [List Restaurants](#list-restaurants)                       | GET    | v1/restaurants                                                  | `IN PROGRESS`  |
-| [Create Restaurant](#new-restaurant)                        | POST   | v1/restaurants                                                  | `DONE`         |
-| [Update Restaurant](#update-restaurant)                     | PATCH  | v1/restaurants                                                  | `IN PROGRESS`  |
-| [Get Restaurant](#get-restaurant)                           | GET    | v1/restaurants/**{id}**                                         | `DONE`         |
-| [List Restaurant Menus](#list-restaurant-menus)             | GET    | v1/restaurants/**{id}**/menus                                   | `DONE`         |
-| [Delete Restaurant](#delete-restaurant)                     | DELETE | v1/restaurants/**{id}**                                         | `IN PROGRESS`  |
-| [List Restaurants Near Me](#restaurants-near-me)            | POST   | v1/restaurants/near-me                                          | `DONE`         |
-| [Search Restaurants](#search-restaurants)                   | GET    | v1/restaurants/search?query=**{search term}**&limit=**{limit}** | `DONE`         |
-| [List Restaurants By Owner](#list-restaurants-by-owner)     | GET    | v1/restaurants/owner                                            | `DONE`         |
-| [Create Restaurant Menu](#create-restaurant-menu)           | POST   | v1/restaurants/**{id}**/menu                                    | `DONE`         |
-| [Get Restaurant QR Code](#get-restaurant-qr-code)           | GET    | v1/restaurants/**{id}**/qrcode                                  | `DONE`         |
-| [Get Menu](#get-menu)                                       | GET    | v1/menu/**{id}**                                                | `DONE`         |
-| [Ask About Menu](#ask-about-menu)                           | GET    | v1/menu/enquire?menuId={menuId}&userId={userId}&prompt={query}  | `IN PROGRESS`  |
-| [Delete Menu](#delete-menu)                                 | DELETE | v1/menu/**{id}**                                                | `DONE`         |
-| [Create Menu Group](#create-menu-group)                     | POST   | v1/menu/**{id}**/menu-group                                     | `DONE`         |
-| [List Menu Groups](#list-menu-groups)                       | GET    | v1/menu/**{id}**/menu-group                                     | `DONE`         |
-| [Update Menu Group](#update-menu-group)                     | PATCH  | v1/menu-group/**{id}**                                          | `DONE`         |
-| [Delete Menu Group](#delete-menu-group)                     | DELETE | v1/menu-group/**{id}**                                          | `DONE`         |
-| [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | v1/menu-group/**{id}**/menu-items                               | `DONE`         |
-| [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | v1/menu-group/**{id}**/menu-items                               | `DONE`         |
-| [Get Menu Item](#get-menu-item)                             | GET    | v1/menu-item/**{id}**                                           | `DONE`         |
-| [Update Menu Item](#update-menu-item)                       | PATCH  | v1/menu-item/**{id}**                                           | `DONE`         |
-| [Delete Menu Item](#delete-menu-item)                       | DELETE | v1/menu-item/**{id}**                                           | `IN PROGRESS`  |
-| [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | v1/menu-item/**{id}**/allergens                                 | `DONE`         |
-| [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | v1/menu-item/**{id}**/allergens                                 | `DONE`         |
-| [Delete Menu Item Allergen](#delete-menu-item-allergen)     | DELETE | v1/menu-item/**{id}**/allergens/**{allergenId}**                | `IN PROGRESS`  |
-| [Create Menu Item Ingredient](#create-menu-item-ingredient) | POST   | v1/menu-item/**{id}**/ingredients                               | `DONE`         |
-| [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | v1/menu-item/**{id}**/ingredients                               | `DONE`         |
-| [Update Ingredient](#update-ingredient)                     | PATCH  | v1/ingredients/**{id}**                                         | `DONE`         |
-| [Delete Ingredient](#delete-ingredient)                     | DELETE | v1/ingredients/**{id}**                                         | `IN PROGRESS`  |
-| [List Allergens](#list-allergens)                           | GET    | v1/allergens                                                    | `DONE`         |
-| [Get Allergen](#get-allergen)                               | GET    | v1/allergens/**{id}**                                           | `DONE`         |
-| [Upload Image Asset](#upload-image-asset)                   | PUT    | v1/upload                                                       | `DONE`         |
+| [Create New User Account](#new-user-account)                | POST   | `v1/auth/sign-up`                                                | `DONE`         |
+| [User Login](#login-user)                                   | POST   | `v1/auth/sign-in`                                                | `DONE`         |
+| [Generate API Key](#generate-api-key)                       | POST   | `v1/auth/api-key`                                                | `DONE`         |
+| [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                  | `IN PROGRESS`  |
+| [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                  | `DONE`         |
+| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                  | `IN PROGRESS`  |
+| [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                         | `DONE`         |
+| [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                   | `DONE`         |
+| [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                         | `IN PROGRESS`  |
+| [List Restaurants Near Me](#restaurants-near-me)            | POST   | `v1/restaurants/near-me`                                          | `DONE`         |
+| [Search Restaurants](#search-restaurants)                   | GET    | `v1/restaurants/search?query={term}&limit={limit}` | `DONE`         |
+| [List Restaurants By Owner](#list-restaurants-by-owner)     | GET    | `v1/restaurants/owner`                                            | `DONE`         |
+| [Create Restaurant Menu](#create-restaurant-menu)           | POST   | `v1/restaurants/{id}/menu`                                    | `DONE`         |
+| [Get Restaurant QR Code](#get-restaurant-qr-code)           | GET    | `v1/restaurants/{id}/qrcode`                                  | `DONE`         |
+| [Get Menu](#get-menu)                                       | GET    | `v1/menu/{id}`                                                | `DONE`         |
+| [Ask About Menu](#ask-about-menu)                           | GET    | `v1/menu/enquire?menuId={menuId}&userId={userId}&prompt={query}`  | `IN PROGRESS`  |
+| [Delete Menu](#delete-menu)                                 | DELETE | `v1/menu/{id} `                                               | `DONE`         |
+| [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                     | `DONE`         |
+| [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                     | `DONE`         |
+| [Update Menu Group](#update-menu-group)                     | PATCH  | `v1/menu-group/{id}`                                          | `DONE`         |
+| [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                          | `DONE`         |
+| [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                               | `DONE`         |
+| [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                               | `DONE`         |
+| [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                           | `DONE`         |
+| [Update Menu Item](#update-menu-item)                       | PATCH  | `v1/menu-item/{id}`                                           | `DONE`         |
+| [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                           | `IN PROGRESS`  |
+| [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | `v1/menu-item/{id}/allergens`                                 | `DONE`         |
+| [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | `v1/menu-item/{id}/allergens`                                 | `DONE`         |
+| [Delete Menu Item Allergen](#delete-menu-item-allergen)     | DELETE | `v1/menu-item/{id}/allergens/{allergenId}`                | `IN PROGRESS`  |
+| [Create Menu Item Ingredient](#create-menu-item-ingredient) | POST   | `v1/menu-item/{id}/ingredients`                               | `DONE`         |
+| [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                               | `DONE`         |
+| [Update Ingredient](#update-ingredient)                     | PATCH  | `v1/ingredients/{id}`                                         | `DONE`         |
+| [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                         | `IN PROGRESS`  |
+| [List Allergens](#list-allergens)                           | GET    | `v1/allergens`                                                    | `DONE`         |
+| [Get Allergen](#get-allergen)                               | GET    | `v1/allergens/{id}`                                           | `DONE`         |
+| [Upload Image Asset](#upload-image-asset)                   | PUT    | `v1/upload`                                                       | `DONE`         |
 
 ## Auth 
 
