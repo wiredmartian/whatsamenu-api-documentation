@@ -122,10 +122,10 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | [Generate API Key](#generate-api-key)                       | POST   | `v1/auth/api-key`                                                | `DONE`         |
 | [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                  | `IN PROGRESS`  |
 | [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                  | `DONE`         |
-| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                  | `IN PROGRESS`  |
+| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                  | `DONE`  |
 | [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                         | `DONE`         |
 | [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                   | `DONE`         |
-| [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                         | `IN PROGRESS`  |
+| [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                         | `DONE`  |
 | [List Restaurants Near Me](#restaurants-near-me)            | POST   | `v1/restaurants/near-me`                                          | `DONE`         |
 | [Search Restaurants](#search-restaurants)                   | GET    | `v1/restaurants/search?query={term}&limit={limit}` | `DONE`         |
 | [List Restaurants By Owner](#list-restaurants-by-owner)     | GET    | `v1/restaurants/owner`                                            | `DONE`         |
@@ -259,7 +259,7 @@ There is **no request body required** to generate a new key
 
 ```json
 {
-  "accessKey": "400762a01b9a0f18516fd001ea802178471e1594...."
+  "accessKey": "WM.NFrS_pfq4_R2_bda6ZUrph9w8QqV1hrIUGe1NJ1olQ8RTO3qD2Jy_dcSqFB-3zqp"
 }
 ```
 
@@ -520,8 +520,8 @@ Gets a restaurant by its id
     "latitude": 12.088,
     "longitude": 12.088
   },
-  "updated": "",
-  "created": ""
+  "updated": "2022-01-02 12:19:30",
+  "created": "2022-01-02 12:19:30"
 }
 ```
 
@@ -555,7 +555,8 @@ Lists restaurants found near specified geolocation coordinates. The `distance` i
 ```json
 {
   "latitude": -29.791040,
-  "longitude": 31.028410
+  "longitude": 31.028410,
+  "radius": 20 // 20km
 }
 ```
 
@@ -570,7 +571,7 @@ Lists restaurants found near specified geolocation coordinates. The `distance` i
     "name": "The Ocean Terrace - The Oyster Box Hotel",
     "summary": null,
     "distance": 8.89917396396982,
-    "imageUrl": "https://b.zmtcdn.com/data/pictures/5/7800495/1e243dd4b12a2d9a26.jpg",
+    "imageUrl": "public/restaurants/14-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
     "address": {
       "addressId": "33",
       "line1": "Umhlanga",
@@ -581,8 +582,8 @@ Lists restaurants found near specified geolocation coordinates. The `distance` i
       "latitude": -29.727597,
       "longitude": 31.087159
     },
-    "updated": "",
-    "created": ""
+    "updated": "2022-01-02 12:19:30",
+    "created": "2022-01-02 12:19:30"
   }
 ]
 ```
@@ -655,7 +656,7 @@ Search for restaurants by name
     "name": "SALT Morningside",
     "summary": "We make the best burgers in Morningside",
     "distance": null,
-    "imageUrl": "https://b.zmtcdn.com/data/pictures/2/3cbabb3a3e6.jpg",
+    "imageUrl": "public/restaurants/1-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
     "address": {
       "addressId": "1",
       "line1": "Florida Morningside",
@@ -836,7 +837,7 @@ Returns a list of restaurant menu, and no additional menu data such as menu item
 
 ### Get Restaurant QR Code
 
-Returns a QR Code image which is just a link to the restaurant's menu
+Returns a base64 QR Code image which is just a link to the restaurant's menu
 
 #### Auth
 
@@ -986,19 +987,6 @@ Returns the menu of the restaurant with all associated items
           "created": "2023-04-03 20:37:23"
         },
         {
-          "menuItemId": "16",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Confit Caprese Salad",
-          "summary": "Exotic tomatoes, orange segment, basil-mozzarella cheese",
-          "description": "Exotic tomatoes, orange segment, basil-mozzarella cheese",
-          "imageUrl": "",
-          "price": 115,
-          "ingredients": [],
-          "updated": "2023-04-03 20:38:44",
-          "created": "2023-04-03 20:38:44"
-        },
-        {
           "menuItemId": "18",
           "menuId": "2",
           "menuGroupId": "9",
@@ -1010,19 +998,6 @@ Returns the menu of the restaurant with all associated items
           "ingredients": [],
           "updated": "2023-04-03 20:40:14",
           "created": "2023-04-03 20:40:14"
-        },
-        {
-          "menuItemId": "19",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Thai Fish Cakes",
-          "summary": "Thai style, panko, coriander, soy, chili, ginger",
-          "description": "Thai style, panko, coriander, soy, chili, ginger",
-          "imageUrl": "",
-          "price": 110,
-          "ingredients": [],
-          "updated": "2023-04-03 20:41:30",
-          "created": "2023-04-03 20:41:30"
         },
         {
           "menuItemId": "21",
@@ -1111,19 +1086,6 @@ Returns the menu of the restaurant with all associated items
           "ingredients": [],
           "updated": "2023-04-04 18:12:01",
           "created": "2023-04-04 18:12:01"
-        },
-        {
-          "menuItemId": "29",
-          "menuId": "2",
-          "menuGroupId": "11",
-          "name": "Calamari & Chorizo Rigatoni",
-          "summary": "Kalamata olives, charred red pepper, tomato salsa",
-          "description": "Kalamata olives, charred red pepper, tomato salsa",
-          "imageUrl": "",
-          "price": 165,
-          "ingredients": [],
-          "updated": "2023-04-04 18:12:43",
-          "created": "2023-04-04 18:12:43"
         },
         {
           "menuItemId": "30",
@@ -1586,7 +1548,7 @@ List all ingredients of a menu item
     "ingredientId": "1",
     "menuItemId": "1",
     "name": "Regular Bun",
-    "imageUrl": "https://www.mcdonalds.co.za/media/Ingredients/regular.png",
+    "imageUrl": "public/ingredients/1-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
     "updated": "2022-01-08 12:37:50",
     "created": ""
   },
@@ -1594,7 +1556,7 @@ List all ingredients of a menu item
     "ingredientId": "2",
     "menuItemId": "1",
     "name": "Ketchup",
-    "imageUrl": "https://www.mcdonalds.co.za/media/Ingredients/ketchup.png",
+    "imageUrl": "public/restaurants/2-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
     "updated": "2022-01-08 12:37:50",
     "created": ""
   }
