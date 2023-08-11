@@ -690,7 +690,7 @@ Search for restaurants by name
 
 ### List Restaurants By Owner
 
-Get a list of restaurant by owner (current authenticated user)
+Get a list of restaurant by owner (current authenticated user request)
 
 #### Auth
 
@@ -722,8 +722,8 @@ Get a list of restaurant by owner (current authenticated user)
       "latitude": 0.16364,
       "longitude": 1.92384872
     },
-    "updated": "",
-    "created": ""
+    "updated": "2023-08-11 19:18:05",
+    "created": "2023-07-29 19:47:26"
   }
 ]
 ```
