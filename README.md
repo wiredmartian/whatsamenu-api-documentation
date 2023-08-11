@@ -458,7 +458,7 @@ Returns a list of unordered restaurants
     "name": "SALT Morningside",
     "summary": "We make the best burgers in Morningside",
     "distance": null,
-    "imageUrl": "https://b.zmtcdn.com/data/pictures/chains/2/7800592/6daa96e6.jpg",
+    "imageUrl": "public/restaurants/134-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
     "address": {
       "addressId": "1",
       "line1": "Florida Morningside",
@@ -507,7 +507,7 @@ Gets a restaurant by its id
   "name": "SALT Morningside",
   "summary": "We make the best burgers in Morningside",
   "distance": null,
-  "imageUrl": "https://b.zmtcdn.com/data/pictures/chains/2/7800592/6a3e6.jpg",
+  "imageUrl": "public/restaurants/134-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
   "address": {
     "addressId": "1",
     "line1": "Florida Morningside",

@@ -100,42 +100,6 @@
                 }
             }
         },
-        "/ingredients/{id}/menu-item/{menu-item-id}": {
-            "delete": {
-                "description": "marks an ingredient item for deletion",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Ingredient"
-                ],
-                "summary": "marks an ingredient item for deletion",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "ingredient id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "menu item id",
-                        "name": "menu-item-id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/dto.SuccessResponse"
-                        }
-                    }
-                }
-            }
-        },
         "/menu-group/{id}": {
             "delete": {
                 "description": "marks a menu group item for deletion",
@@ -524,6 +488,78 @@
                 }
             }
         },
+        "/menu-item/{id}/ingredients/{ingredient-id}": {
+            "delete": {
+                "description": "marks an ingredient item for deletion",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu Item"
+                ],
+                "summary": "marks an ingredient item for deletion",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ingredient id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "menu item id",
+                        "name": "menu-item-id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SuccessResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/enquire": {
+            "get": {
+                "description": "returns a stream of responses about the query",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "returns a stream of responses about the query",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "menu id",
+                        "name": "menuId",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "user id",
+                        "name": "userId",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "prompt message",
+                        "name": "prompt",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/menu/{id}": {
             "get": {
                 "description": "returns a restaurant menu with all data",
@@ -705,14 +741,14 @@
         },
         "/restaurants/near-me": {
             "get": {
-                "description": "gets all restaurants within 15km radius",
+                "description": "gets all restaurants within specified radius (default 10km)",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Restaurants"
                 ],
-                "summary": "gets all restaurants within 15km radius",
+                "summary": "gets all restaurants within specified radius",
                 "parameters": [
                     {
                         "description": "coordinates request body",
@@ -720,7 +756,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/dto.InputCoordinates"
+                            "$ref": "#/definitions/dto.LocationSearch"
                         }
                     }
                 ],
@@ -1035,6 +1071,23 @@
                 }
             }
         },
+        "/users/request-otp": {
+            "post": {
+                "description": "request OTP (One-Time-PIN) for password reset",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "request OTP for password reset",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/users/sign-in": {
             "post": {
                 "description": "authenticates to the API",
@@ -1266,7 +1319,6 @@
                 "line1",
                 "longitude",
                 "name",
-                "owner",
                 "state",
                 "summary"
             ],
@@ -1317,7 +1369,7 @@
                 }
             }
         },
-        "dto.InputCoordinates": {
+        "dto.LocationSearch": {
             "type": "object",
             "required": [
                 "latitude",
@@ -1329,6 +1381,9 @@
                 },
                 "longitude": {
                     "type": "number"
+                },
+                "radius": {
+                    "type": "integer"
                 }
             }
         },
