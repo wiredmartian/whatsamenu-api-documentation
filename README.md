@@ -662,11 +662,11 @@ Search for restaurants by name
       "city": "Durban",
       "state": "KwaZulu-Natal",
       "country": "",
-      "latitude": 12.088,
-      "longitude": 12.088
+      "latitude": 12.0881728,
+      "longitude": 12.019378
     },
-    "updated": "",
-    "created": ""
+    "updated": "2022-06-23 22:49:15",
+    "created": "2022-06-23 22:49:15"
   }
 ]
 ```
