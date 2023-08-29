@@ -5,41 +5,57 @@
 - [WhatsAMenu API](#whatsamenu-api)
     - [Supported Enums](#supported-enums)
         - [Used Status Codes](#http-status-codes)
-        - [Upload Types](#upload-type-entities)
         - [Provinces](#provinces)
     - [Authentication](#authentication)
         - [Accepted Headers](#accepted-headers)
     - [API](#api)
-        - [Auth](#auth)
+        - [Auth & Accounts](#auth-and-accounts)
             - [Create New User Account](#new-user-account)
-            - [User Login](#login-user)
-            - [Generate API Key](#generate-api-key)
+            - [User Login](#login-user)                   
+            - [Generate API Key](#generate-api-key)       
+            - [Generate API Key](#forgot-password)        
+            - [Forgot Password](#reset-password)
         - [Restaurants](#restaurants)
-            - [List Restaurants](#list-restaurants)
-            - [Create Restaurant](#new-restaurant)
-            - [Update Restaurant](#update-restaurant)
-            - [Get Restaurant](#get-restaurant)
-            - [Delete Restaurant](#delete-restaurant)
-            - [List Restaurants Near Me](#restaurants-near-me)
-            - [Search Restaurants](#search-restaurants)
+            - [List Restaurants](#list-restaurants)                  
+            - [Create Restaurant](#new-restaurant)                   
+            - [Update Restaurant](#update-restaurant)                
+            - [Get Restaurant](#get-restaurant)                      
+            - [List Restaurant Menus](#list-restaurant-menus)        
+            - [Delete Restaurant](#delete-restaurant)                
+            - [List Restaurants Near Me](#restaurants-near-me)       
+            - [Search Restaurants](#search-restaurants)              
             - [List Restaurants By Owner](#list-restaurants-by-owner)
-            - [Create Restaurant Menu](#create-restaurant-menu)
-            - [List Restaurant Menus](#list-restaurant-menus)
-            - [Get Restaurant QR Code](#get-restaurant-qr-code)
+            - [Create Restaurant Menu](#create-restaurant-menu)      
+            - [Get Restaurant QR Code](#get-restaurant-qr-code)      
+            - [Upload Restaurant Banner](#upload-restaurant-banner)
         - [Menu](#menu)
-            - [Ask About Menu](#ask-about-menu)
-            - [Get Menu](#get-menu)
-            - [Delete Menu](#delete-menu)
-            - [Create Menu Group*](#create-menu-group)
-            - [Get Menu's Group By id*](#create-menu-group)
+            - [Get Menu](#get-menu)                  
+            - [Ask About Menu](#ask-about-menu)      
+            - [Delete Menu](#delete-menu)            
+            - [Create Menu Group](#create-menu-group)
+            - [List Menu Groups](#list-menu-groups)
         - [Menu Group](#menu-group)
-            - [Get Menu Group By id](#get-menu-group-by-id)
-            - [Update Menu Group](#update-menu-group)
-            - [Delete Menu Group](#delete-menu-group)
-            - [Create Menu Group's Menu Item*](#create-menu-item)
+            - [Update Menu Group](#update-menu-group)              
+            - [Delete Menu Group](#delete-menu-group)              
+            - [Create Grouped Menu Item](#create-grouped-menu-item)
+            - [List Grouped Menu Items](#list-grouped-menu-items)
         - [Menu Item](#menu-item)
-            - [Get Menu Item](#get-menu-item)
-            - [Update Menu Item](#update-menu-item)
+            - [Get Menu Item](#get-menu-item)                            
+            - [Update Menu Item](#update-menu-item)                      
+            - [Delete Menu Item](#delete-menu-item)                      
+            - [Create Menu Item Allergen](#create-menu-item-allergen)    
+            - [List Menu Item Allergens](#list-menu-item-allergens)      
+            - [Delete Menu Item Allergen](#delete-menu-item-allergen)    
+            - [Create Menu Item Ingredient](#create-menu-item-ingredient)
+            - [List Menu Item Ingredients](#list-menu-item-ingredients)  
+            - [Upload Menu Item Image](#upload-menu-item-image)
+        - [Ingredients](#ingredient)
+            - [Update Ingredient](#update-ingredient)            
+            - [Delete Ingredient](#delete-ingredient)            
+            - [Upload Ingredient Image](#upload-ingredient-image)
+        - [Allergen](#allergen)
+            - [List Allergens](#list-allergens)
+            - [Get Allergen](#get-allergen)
 
 <!-- /TOC -->
 <!-- Generated with https://marketplace.visualstudio.com/items?itemName=AlanWalk.markdown-toc -->
@@ -67,14 +83,6 @@ This API only returns data in a **JSON** format. It also accepts data in **JSON*
 | LIMPOMPO      | Limpopo                             |
 | FREE_STATE    | Free State                          |
 | KWAZULU_NATAL | KwaZulu-Natal                       |
-
-#### Upload Type Entities
-
-| Entities   | Description |
-|------------|-------------|
-| RESTAURANT | Restaurant  |
-| MENUITEM   | Menu Item   |
-| INGREDIENT | Ingredient  |
 
 
 #### HTTP Status Codes
@@ -115,46 +123,59 @@ The Bearer token is passed through the `Authorization` header. And the API key c
 
 These are all the version 1 `/v1/` endpoints available to manage restaurants, accounts and menu.
 
+
 | Action                                                      | Method | Resource                                                         | Current Status |
 |-------------------------------------------------------------|--------|------------------------------------------------------------------|----------------|
+| **Auth & Account endpoints**                                |        |                                                                  |                |
 | [Create New User Account](#new-user-account)                | POST   | `v1/auth/sign-up`                                                | `DONE`         |
 | [User Login](#login-user)                                   | POST   | `v1/auth/sign-in`                                                | `DONE`         |
 | [Generate API Key](#generate-api-key)                       | POST   | `v1/auth/api-key`                                                | `DONE`         |
-| [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                  | `IN PROGRESS`  |
-| [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                  | `DONE`         |
-| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                  | `DONE`  |
-| [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                         | `DONE`         |
-| [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                   | `DONE`         |
-| [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                         | `DONE`  |
-| [List Restaurants Near Me](#restaurants-near-me)            | POST   | `v1/restaurants/near-me`                                          | `DONE`         |
-| [Search Restaurants](#search-restaurants)                   | GET    | `v1/restaurants/search?query={term}&limit={limit}` | `DONE`         |
-| [List Restaurants By Owner](#list-restaurants-by-owner)     | GET    | `v1/restaurants/owner`                                            | `DONE`         |
-| [Create Restaurant Menu](#create-restaurant-menu)           | POST   | `v1/restaurants/{id}/menu`                                    | `DONE`         |
-| [Get Restaurant QR Code](#get-restaurant-qr-code)           | GET    | `v1/restaurants/{id}/qrcode`                                  | `DONE`         |
-| [Get Menu](#get-menu)                                       | GET    | `v1/menu/{id}`                                                | `DONE`         |
-| [Ask About Menu](#ask-about-menu)                           | GET    | `v1/menu/enquire?menuId={menuId}&userId={userId}&prompt={query}`  | `IN PROGRESS`  |
-| [Delete Menu](#delete-menu)                                 | DELETE | `v1/menu/{id} `                                               | `DONE`         |
-| [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                     | `DONE`         |
-| [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                     | `DONE`         |
-| [Update Menu Group](#update-menu-group)                     | PATCH  | `v1/menu-group/{id}`                                          | `DONE`         |
-| [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                          | `DONE`         |
-| [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                               | `DONE`         |
-| [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                               | `DONE`         |
-| [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                           | `DONE`         |
-| [Update Menu Item](#update-menu-item)                       | PATCH  | `v1/menu-item/{id}`                                           | `DONE`         |
-| [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                           | `IN PROGRESS`  |
-| [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | `v1/menu-item/{id}/allergens`                                 | `DONE`         |
-| [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | `v1/menu-item/{id}/allergens`                                 | `DONE`         |
-| [Delete Menu Item Allergen](#delete-menu-item-allergen)     | DELETE | `v1/menu-item/{id}/allergens/{allergenId}`                | `IN PROGRESS`  |
-| [Create Menu Item Ingredient](#create-menu-item-ingredient) | POST   | `v1/menu-item/{id}/ingredients`                               | `DONE`         |
-| [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                               | `DONE`         |
-| [Update Ingredient](#update-ingredient)                     | PATCH  | `v1/ingredients/{id}`                                         | `DONE`         |
-| [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                         | `IN PROGRESS`  |
-| [List Allergens](#list-allergens)                           | GET    | `v1/allergens`                                                    | `DONE`         |
-| [Get Allergen](#get-allergen)                               | GET    | `v1/allergens/{id}`                                           | `DONE`         |
-| [Upload Image Asset](#upload-image-asset)                   | PUT    | `v1/upload`                                                       | `DONE`         |
+| [Generate API Key](#forgot-password)                        | POST   | `v1/auth/forgot-password`                                        | `DONE`         |
+| [Forgot Password](#reset-password)                          | POST   | `v1/auth/reset-password`                                         | `DONE`         |
+| **Restaurant endpoints**                                    |        |                                                                  |                |
+| [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                 | `IN PROGRESS`  |
+| [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                 | `DONE`         |
+| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                 | `DONE`         |
+| [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                            | `DONE`         |
+| [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                      | `DONE`         |
+| [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                            | `DONE`         |
+| [List Restaurants Near Me](#restaurants-near-me)            | POST   | `v1/restaurants/near-me`                                         | `DONE`         |
+| [Search Restaurants](#search-restaurants)                   | GET    | `v1/restaurants/search?query={term}&limit={limit}`               | `DONE`         |
+| [List Restaurants By Owner](#list-restaurants-by-owner)     | GET    | `v1/restaurants/owner`                                           | `DONE`         |
+| [Create Restaurant Menu](#create-restaurant-menu)           | POST   | `v1/restaurants/{id}/menu`                                       | `DONE`         |
+| [Get Restaurant QR Code](#get-restaurant-qr-code)           | GET    | `v1/restaurants/{id}/qrcode`                                     | `DONE`         |
+| [Upload Restaurant Banner](#upload-restaurant-banner)       | PUT    | `v1/restaurants/{id}/upload`                                     | `DONE`         |
+| **Menu endpoints**                                          |        |                                                                  |                |
+| [Get Menu](#get-menu)                                       | GET    | `v1/menu/{id}`                                                   | `DONE`         |
+| [Ask About Menu](#ask-about-menu)                           | GET    | `v1/menu/enquire?menuId={menuId}&userId={userId}&prompt={query}` | `IN PROGRESS`  |
+| [Delete Menu](#delete-menu)                                 | DELETE | `v1/menu/{id} `                                                  | `DONE`         |
+| [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                        | `DONE`         |
+| [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                        | `DONE`         |
+| **Menu Group endpoints**                                    |        |                                                                  |                |
+| [Update Menu Group](#update-menu-group)                     | PATCH  | `v1/menu-group/{id}`                                             | `DONE`         |
+| [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                             | `DONE`         |
+| [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
+| [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
+| **Menu Item endpoints**                                     |        |                                                                  |                |
+| [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                              | `DONE`         |
+| [Update Menu Item](#update-menu-item)                       | PATCH  | `v1/menu-item/{id}`                                              | `DONE`         |
+| [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                              | `DONE`         |
+| [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
+| [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
+| [Delete Menu Item Allergen](#delete-menu-item-allergen)     | DELETE | `v1/menu-item/{id}/allergens/{allergenId}`                       | `IN PROGRESS`  |
+| [Create Menu Item Ingredient](#create-menu-item-ingredient) | POST   | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
+| [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
+| [Upload Menu Item Image](#upload-menu-item-image)           | PUT    | `v1/menu-item/{id}/upload`                                       | `DONE`         |
+| **Ingredient endpoints**                                    |        |                                                                  |                |
+| [Update Ingredient](#update-ingredient)                     | PATCH  | `v1/ingredients/{id}`                                            | `DONE`         |
+| [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                            | `DONE`         |
+| [Upload Ingredient Image](#upload-ingredient-image)         | PUT    | `v1/ingredients/{id}/upload`                                     | `DONE`         |
+| **Allergen endpoints**                                      |        |                                                                  |                |
+| [List Allergens](#list-allergens)                           | GET    | `v1/allergens`                                                   | `DONE`         |
+| [Get Allergen](#get-allergen)                               | GET    | `v1/allergens/{id}`                                              | `DONE`         |
 
-## Auth 
+
+## Auth And Accounts
 
 ### New User Account
 
@@ -273,6 +294,83 @@ There is **no request body required** to generate a new key
 }
 ```
 
+### Forgot Password
+
+Sends an OTP (One-Time PIN) to the email inbox that will be used to reset the password
+
+#### Auth
+
+- Anonymous
+
+#### Request
+
+`POST v1/auth/forgot-password`
+
+#### Example
+
+```json
+{
+  "email": "sbu@example.com"
+}
+```
+
+#### Responses
+
+`[200 - OK]`
+
+```json
+{
+  "message": "A One Time Pin has been sent to your email"
+}
+```
+
+### Reset Password
+
+Resets the user's forgotten password
+
+#### Auth
+
+- Anonymous
+
+#### Request
+
+`POST v1/auth/reset-password`
+
+#### Example
+
+```json
+{
+  "email": "sbu@example.com",
+  "password": "P@$$w0rd!!",
+  "otp": "701950"
+}
+```
+
+#### Responses
+
+`[200 - OK]`
+
+```json
+{
+  "message": "Password reset successful"
+}
+```
+
+`[400 - OK]`
+
+```json
+{
+  "message": "Incorrect One Time PIN (OTP)"
+}
+```
+
+`[400 - OK]`
+
+```json
+{
+  "message": "OTP has expired"
+}
+```
 
 ## Restaurants
 
@@ -536,7 +634,7 @@ Gets a restaurant by its id
 
 ### Restaurants Near Me
 
-Lists restaurants found near specified geolocation coordinates. The `distance` is in meters
+Lists restaurants found near specified geolocation coordinates. The `distance` is in meters. The `radius` is in kilometers
 
 #### Auth
 
@@ -554,7 +652,7 @@ Lists restaurants found near specified geolocation coordinates. The `distance` i
 {
   "latitude": -29.791040,
   "longitude": 31.028410,
-  "radius": 20 // 20km
+  "radius": 20
 }
 ```
 
@@ -850,9 +948,54 @@ Returns a base64 QR Code image which is just a link to the restaurant's menu
 
 ```json
 {
-  "imageUri": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlB..."
+  "imageUri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA..."
 }
 ```
+
+
+### Upload Restaurant Banner
+
+Uploads a restaurant display/banner image
+
+### Image Criteria
+- PNG / JPG / JPEG
+- < 1MB
+
+#### Auth
+
+- API Key
+
+#### Request
+
+`PUT v1/restaurants/{id}/upload`
+
+#### Body
+
+Content-Type: `multipart/form-data`
+
+
+| Key        | Required | Type                                  |
+|------------|----------|---------------------------------------|
+| fileData   | true     | file                                  |
+
+#### Example response
+
+`[200 - OK]`
+
+```json
+{
+  "data": "public/restaurants/5-b2a7f1c6be9edf1ac591c123b6ed2f90.jpg"
+}
+```
+
+`[400 - BadRequest]`
+
+```json
+{
+  "error": "image too large"
+}
+```
+
 
 
 ## Menu
@@ -1570,6 +1713,51 @@ Lists all allergens for a menu item
 ]
 ```
 
+### Upload Menu Item Image
+
+Uploads a menu item display image
+
+### Image Criteria
+- PNG / JPG / JPEG
+- < 1MB
+
+#### Auth
+
+- API Key
+
+#### Request
+
+`PUT v1/menu-item/{id}/upload`
+
+#### Body
+
+Content-Type: `multipart/form-data`
+
+
+| Key        | Required | Type                                  |
+|------------|----------|---------------------------------------|
+| fileData   | true     | file                                  |
+
+#### Example response
+
+`[200 - OK]`
+
+```json
+{
+  "data": "public/menu-items/5-b2a7f1c6be9edf1ac591c123b6ed2f90.jpg"
+}
+```
+
+`[400 - BadRequest]`
+
+```json
+{
+  "error": ".gif file type is not allowed"
+}
+```
+
+
+
 ## Ingredient
 
 ### Update Ingredient
@@ -1641,6 +1829,51 @@ Marks an ingredient for deletion
 }
 ```
 
+### Upload Ingredient Image
+
+Uploads an ingredient image
+
+### Image Criteria
+- PNG / JPG / JPEG
+- < 1MB
+
+#### Auth
+
+- API Key
+
+#### Request
+
+`PUT v1/ingredients/{id}/upload`
+
+#### Body
+
+Content-Type: `multipart/form-data`
+
+
+| Key        | Required | Type                                  |
+|------------|----------|---------------------------------------|
+| fileData   | true     | file                                  |
+
+#### Example response
+
+`[200 - OK]`
+
+```json
+{
+  "data": "public/ingredients/5-b2a7f1c6be9edf1ac591c123b6ed2f90.jpg"
+}
+```
+
+`[400 - BadRequest]`
+
+```json
+{
+  "error": "image too large"
+}
+```
+
+
+
 ## Allergen
 
 ### Get Allergen
@@ -1701,52 +1934,4 @@ Returns a list of all allergens
     "created": ""
   }
 ]
-```
-
-
-## Uploads
-
-### Upload Image Asset
-
-Single unified resource for uploading **menu** and **restaurant** related images
-
-### Image Criteria
-- PNG / JPG / JPEG
-- < 1MB
-
-#### Auth
-
-- API Key
-
-#### Request
-
-`PUT v1/upload`
-
-#### Body
-
-Content-Type: `multipart/form-data`
-
-
-| Key        | Required | Type                                  |
-|------------|----------|---------------------------------------|
-| entityType | true     | [Entity Types](#upload-type-entities) |             
-| entityId   | true     | int/string                            |             
-| fileData   | true     | file                                  |
-
-#### Example response
-
-`[200 - OK]`
-
-```json
-{
-  "data": "public/menu-items/5-b2a7f1c6be9edf1ac591c123b6ed2f90.jpg"
-}
-```
-
-`[400 - BadRequest]`
-
-```json
-{
-  "error": "image too large"
-}
 ```
