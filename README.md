@@ -68,6 +68,8 @@ even allows you to add images for menu items (dish) and each ingredient for the 
 
 This API only returns data in a **JSON** format. It also accepts data in **JSON** format, unless otherwise specified.
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/7238091-c337fbed-43fc-4a66-870c-3cfbdc1167e2?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D7238091-c337fbed-43fc-4a66-870c-3cfbdc1167e2%26entityType%3Dcollection%26workspaceId%3Df7aedb7c-b2ff-43da-b219-270fbd08a6e3)
+
 ### Supported Enums
 
 #### Provinces
