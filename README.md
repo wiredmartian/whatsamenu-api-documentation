@@ -62,7 +62,7 @@
 
 # WhatsAMenu API
 
-**WhatsAMenu** is a food/drinks restaurant menu API allowing consumers to be as verbose as possible about their
+**WhatsAMenu** (What's a menu?) is a food/drinks restaurant menu API allowing consumers to be as verbose as possible about their
 food items and drinks. It allows you to specify **categories**, **ingredients**, **allergens**. It
 even allows you to add images for menu items (dish) and each ingredient for the dish.
 
@@ -102,8 +102,8 @@ These are the only response status codes to be expected from this API
 - Bearer
 - API Key
 
-**WhatsAMenu API** uses either a **Bearer** token or the **API Key**. You receive a bearer token when you log into
-the system. You need the bearer token to generate the initial API key. Any subsequent keys can be generated using
+**WhatsAMenu API** currently supports **Bearer** token or the **API Key** for authentication. You receive a bearer token when you log into
+the system. You need the bearer token to generate the initial API key. Any subsequent API Keys can be generated using
 a bearer token or an API key.
 
 ### Accepted Headers
