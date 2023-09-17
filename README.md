@@ -206,7 +206,7 @@ Signing up for a new account
 
 ```json
 {
-  "data": "user account created"
+  "message": "user account created"
 }
 ```
 
@@ -429,7 +429,7 @@ Consists of restaurant information, and it's address including geo-coordinates (
 
 ```json
 {
-  "data": "restaurant created"
+  "message": "restaurant created"
 }
 ```
 
@@ -503,7 +503,7 @@ Updates an existing restaurant details
 
 ```json
 {
-  "data": "restaurant updated"
+  "message": "restaurant updated"
 }
 ```
 
@@ -716,7 +716,7 @@ such as a **menu**, **address**, **menu items**, **groups**, and **ingredients**
 
 ```json
 {
-  "data": "item deleted"
+  "message": "item deleted"
 }
 ```
 
@@ -881,7 +881,7 @@ Creates a menu and associates it with a restaurant
 
 ```json
 {
-  "data": "menu created"
+  "message": "menu created"
 }
 ```
 
@@ -1065,7 +1065,7 @@ Creates a menu group/section/category within the main menu
 
 ```json
 {
-  "data": "menu group created"
+  "message": "menu group created"
 }
 ```
 
@@ -1255,7 +1255,7 @@ such as **menu items**, **groups**, and **ingredients**.
 
 ```json
 {
-  "data": "item deleted"
+  "message": "item deleted"
 }
 ```
 
@@ -1296,7 +1296,7 @@ Updates a menu group
 
 ```json
 {
-  "data": "menu group updated"
+  "message": "menu group updated"
 }
 ```
 
@@ -1326,7 +1326,7 @@ Deletes a menu group and all menu items attached to it
 
 ```json
 {
-  "data": "item deleted"
+  "message": "item deleted"
 }
 ```
 
@@ -1449,7 +1449,7 @@ Create a menu item under a group/category
 
 ```json
 {
-  "data": "menu item created"
+  "message": "menu item created"
 }
 ```
 
@@ -1525,7 +1525,7 @@ Update a menu item
 
 ```json
 {
-  "data": "menu item updated"
+  "message": "menu item updated"
 }
 ```
 
@@ -1555,7 +1555,7 @@ Marks a menu item for deletion
 
 ```json
 {
-  "data": "item deleted"
+  "message": "item deleted"
 }
 ```
 
@@ -1593,7 +1593,7 @@ Creates/adds an allergen to a menu item
 
 ```json
 {
-  "data": "ingredient created"
+  "message": "ingredient created"
 }
 ```
 
@@ -1631,7 +1631,7 @@ Creates/adds an allergen to a menu item
 
 ```json
 {
-  "data": "allergen added"
+  "message": "allergen added"
 }
 ```
 
@@ -1789,7 +1789,7 @@ Updates an ingredient of a menu item
 
 ```json
 {
-  "data": "ingredient updated"
+  "message": "ingredient updated"
 }
 ```
 
@@ -1819,7 +1819,7 @@ Marks an ingredient for deletion
 
 ```json
 {
-  "data": "ingredient deleted"
+  "message": "ingredient deleted"
 }
 ```
 
