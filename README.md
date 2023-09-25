@@ -137,7 +137,7 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | **Restaurant endpoints**                                    |        |                                                                  |                |
 | [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                 | `IN PROGRESS`  |
 | [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                 | `DONE`         |
-| [Update Restaurant](#update-restaurant)                     | PATCH  | `v1/restaurants`                                                 | `DONE`         |
+| [Update Restaurant](#update-restaurant)                     | PUT  | `v1/restaurants`                                                 | `DONE`         |
 | [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                            | `DONE`         |
 | [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                      | `DONE`         |
 | [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                            | `DONE`         |
@@ -154,13 +154,13 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                        | `DONE`         |
 | [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                        | `DONE`         |
 | **Menu Group endpoints**                                    |        |                                                                  |                |
-| [Update Menu Group](#update-menu-group)                     | PATCH  | `v1/menu-group/{id}`                                             | `DONE`         |
+| [Update Menu Group](#update-menu-group)                     | PUT  | `v1/menu-group/{id}`                                             | `DONE`         |
 | [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                             | `DONE`         |
 | [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
 | [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
 | **Menu Item endpoints**                                     |        |                                                                  |                |
 | [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                              | `DONE`         |
-| [Update Menu Item](#update-menu-item)                       | PATCH  | `v1/menu-item/{id}`                                              | `DONE`         |
+| [Update Menu Item](#update-menu-item)                       | PUT  | `v1/menu-item/{id}`                                              | `DONE`         |
 | [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                              | `DONE`         |
 | [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
 | [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
@@ -169,7 +169,7 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
 | [Upload Menu Item Image](#upload-menu-item-image)           | PUT    | `v1/menu-item/{id}/upload`                                       | `DONE`         |
 | **Ingredient endpoints**                                    |        |                                                                  |                |
-| [Update Ingredient](#update-ingredient)                     | PATCH  | `v1/ingredients/{id}`                                            | `DONE`         |
+| [Update Ingredient](#update-ingredient)                     | PUT  | `v1/ingredients/{id}`                                            | `DONE`         |
 | [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                            | `DONE`         |
 | [Upload Ingredient Image](#upload-ingredient-image)         | PUT    | `v1/ingredients/{id}/upload`                                     | `DONE`         |
 | **Allergen endpoints**                                      |        |                                                                  |                |
@@ -463,7 +463,7 @@ Updates an existing restaurant details
 
 #### Request
 
-`PATCH - v1/restaurants/{restaurantId}`
+`PUT - v1/restaurants/{restaurantId}`
 
 **JSON BODY**
 
@@ -855,7 +855,7 @@ Creates a menu and associates it with a restaurant
 
 #### Request
 
-`PATCH - v1/restaurants/{id}/menu`
+`PUT - v1/restaurants/{id}/menu`
 
 **JSON BODY**
 
@@ -1279,7 +1279,7 @@ Updates a menu group
 
 #### Request
 
-`PATCH v1/menu-group/{id}`
+`PUT v1/menu-group/{id}`
 
 #### Example body
 
@@ -1505,7 +1505,7 @@ Update a menu item
 
 #### Request
 
-`PATCH v1/menu-item/{id}`
+`PUT v1/menu-item/{id}`
 
 #### Example body
 
@@ -1772,7 +1772,7 @@ Updates an ingredient of a menu item
 
 #### Request
 
-`PATCH v1/ingredients/{id}`
+`PUT v1/ingredients/{id}`
 
 #### Example body
 

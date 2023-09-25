@@ -1,0 +1,1222 @@
+{
+	"info": {
+		"_postman_id": "72fcd8df-bc8f-4901-9b25-b8204b7b29a0",
+		"name": "WhatsAMenu API",
+		"description": "Whatsamenu API Documentation - a verbose menu for your restaurant.  \n\n**WhatsAMenu** (what's a menu) is a food/drinks restaurant menu API allowing consumers to be as verbose as possible about their  \nfood items and drinks. It allows you to specify **categories**, **ingredients**, **allergens**. It  \neven allows you to add images for menu items (dish) and each ingredient for the dish.\n\nThis API only returns data in a **JSON** format. It also accepts data in **JSON** format, unless otherwise specified.\n\nGithub Documentation for more details: [https://github.com/wiredmartian/whatsamenu-api-doc]()  \n\nDemo website: [https://menu.wiredmartians.com/]()",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7238091"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"example-user@gmail.com\",\n    \"password\": \"P@$$w0rd!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"example-user@gmail.com\",\n    \"password\": \"P@$$w0rd!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate API key",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "<Bearer Token>",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auth/api-key",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"api-key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"kingii@mailinator.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auth/forgot-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"kingii@mailinator.com\",\n    \"password\": \"1234\",\n    \"otp\": \"701950\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auth/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "**WhatsAMenu API** currently supports **Bearer** token or the **API Key** for authentication. You receive a bearer token when you log into the system. You need the bearer token to generate the initial API key. Any subsequent API Keys can be generated using a bearer token or an API key."
+		},
+		{
+			"name": "Restaurants",
+			"item": [
+				{
+					"name": "Create Restaurant",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"line1\": \"1526 Example Street\",\n  \"line2\": \"Morningside\",\n  \"city\": \"Durban\",\n  \"state\": \"KWAZULU_NATAL\",\n  \"country\": \"South Africa\",\n  \"latitude\": 12.34385833,\n  \"longitude\": -13.238437,\n  \"name\": \"Kloof Restaurant\",\n  \"summary\": \"We sell the best stuffin Morningside\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Restaurant",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"line1\": \"311 Peter Mokaba Rd\",\n  \"line2\": \"Morningside\",\n  \"city\": \"Durban\",\n  \"state\": \"KWAZULU_NATAL\",\n  \"country\": \"South Africa\",\n  \"latitude\": 12.34385833,\n  \"longitude\": -13.238437,\n  \"name\": \"Wired Martian Kitchen\",\n  \"summary\": \"We sell the best kotas in Durban\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/64",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"64"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Restaurant Menu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Martian's Menu\",\n  \"summary\": \"The hottest kicthen in SA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/64/menu",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"64",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurants Near Me",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"latitude\": -29.791040,\n  \"longitude\": 31.028410,\n  \"radius\": 20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/near-me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"near-me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Restaurant By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/64",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"64"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/owner",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/search?query=Wired&limit=3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Wired"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Restaurant Menus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/64/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"64",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurant QR Code",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/64/qrcode",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"64",
+								"qrcode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Restaurant",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/64",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"64"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Banner Image",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fileData",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/restaurants/64/upload",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"restaurants",
+								"64",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "Get Menu By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu/22",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Menu Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu/22/menu-groups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu",
+								"22",
+								"menu-groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Menu Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Hot Beverages\",\n  \"summary\": \"All you can drink\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu/22/menu-groups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu",
+								"22",
+								"menu-groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu Group",
+			"item": [
+				{
+					"name": "Create Menu Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Expresso\",\n  \"summary\": \"Some example summary of Expresso coffee\",\n  \"description\": \"Somewhat detailed example description of Expresso coffee\",\n  \"price\": 20.39,\n  \"allergens\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-group/24/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-group",
+								"24",
+								"menu-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Menu Items by Group",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-group/24/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-group",
+								"24",
+								"menu-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Menu Group",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Hot Beverages\",\n  \"summary\": \"Best hot beverages in the land\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-group/24",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-group",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Menu Group",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-group/24",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-group",
+								"24"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu Item",
+			"item": [
+				{
+					"name": "Get Menu Item By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Menu Item Ingredients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49/ingredients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Menu Item Allergens",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49/allergens",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49",
+								"allergens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Menu Item",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Americano Coffee\",\n    \"summary\": \"Some example summary of americano coffee\",\n    \"description\": \"Somewhat detailed example description of americano coffee\",\n    \"price\": 45.34,\n    \"menuGroupId\": 24\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Menu Item Ingredient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Milk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49/ingredients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Menu Item Allergen",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"allergenId\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49/allergens",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49",
+								"allergens"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Menu Item Allergen",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49/allergens/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49",
+								"allergens",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Menu Item",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Menu Item Ingredient",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49/ingredients/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49",
+								"ingredients",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Menu Item Image",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fileData",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/menu-item/49/upload",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"menu-item",
+								"49",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ingredients",
+			"item": [
+				{
+					"name": "Update Ingredient",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/ingredients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Ingredient Image",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fileData",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/ingredients/11/upload",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"ingredients",
+								"11",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Allergens",
+			"item": [
+				{
+					"name": "Get Allergens",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/allergens",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"allergens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Allergen By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-auth-token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/allergens/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"allergens",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://whatsamenu.core.wiredmartians.com",
+			"type": "default"
+		},
+		{
+			"key": "x-auth-token",
+			"value": "<API Key>",
+			"type": "default"
+		}
+	]
+}
