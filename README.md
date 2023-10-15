@@ -13,13 +13,15 @@
             - [Create New User Account](#new-user-account)
             - [User Login](#login-user)                   
             - [Generate API Key](#generate-api-key)       
-            - [Forgot Password](#forgot-password)        
-            - [Reset Password](#reset-password)
+            - [Generate API Key](#forgot-password)        
+            - [Forgot Password](#reset-password)
         - [Restaurants](#restaurants)
             - [List Restaurants](#list-restaurants)                  
             - [Create Restaurant](#new-restaurant)                   
-            - [Update Restaurant](#update-restaurant)                
-            - [Get Restaurant](#get-restaurant)                      
+            - [Update Restaurant](#update-restaurant)
+            - [Create Alias](#create-restaurant-id-alias)
+            - [Get Restaurant By Id](#get-restaurant-by-id)         
+            - [Get Restaurant By Alias](#get-restaurant-by-alias)
             - [List Restaurant Menus](#list-restaurant-menus)        
             - [Delete Restaurant](#delete-restaurant)                
             - [List Restaurants Near Me](#restaurants-near-me)       
@@ -137,8 +139,10 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | **Restaurant endpoints**                                    |        |                                                                  |                |
 | [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                 | `IN PROGRESS`  |
 | [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                 | `DONE`         |
-| [Update Restaurant](#update-restaurant)                     | PUT  | `v1/restaurants`                                                 | `DONE`         |
-| [Get Restaurant](#get-restaurant)                           | GET    | `v1/restaurants/{id}`                                            | `DONE`         |
+| [Update Restaurant](#update-restaurant)                     | PUT    | `v1/restaurants`                                                 | `DONE`         |
+| [Create Alias](#create-restaurant-id-alias)                 | POST   | `v1/restaurants/{id}/alias`                                      | `DONE`         |
+| [Get Restaurant By Id](#get-restaurant-by-id)               | GET    | `v1/restaurants/{id}`                                            | `DONE`         |
+| [Get Restaurant By Alias](#get-restaurant-by-alias)         | GET    | `v1/restaurants/{alias}/alias`                                   | `DONE`         |
 | [List Restaurant Menus](#list-restaurant-menus)             | GET    | `v1/restaurants/{id}/menus`                                      | `DONE`         |
 | [Delete Restaurant](#delete-restaurant)                     | DELETE | `v1/restaurants/{id}`                                            | `DONE`         |
 | [List Restaurants Near Me](#restaurants-near-me)            | POST   | `v1/restaurants/near-me`                                         | `DONE`         |
@@ -154,13 +158,13 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                        | `DONE`         |
 | [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                        | `DONE`         |
 | **Menu Group endpoints**                                    |        |                                                                  |                |
-| [Update Menu Group](#update-menu-group)                     | PUT  | `v1/menu-group/{id}`                                             | `DONE`         |
+| [Update Menu Group](#update-menu-group)                     | PUT    | `v1/menu-group/{id}`                                             | `DONE`         |
 | [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                             | `DONE`         |
 | [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
 | [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
 | **Menu Item endpoints**                                     |        |                                                                  |                |
 | [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                              | `DONE`         |
-| [Update Menu Item](#update-menu-item)                       | PUT  | `v1/menu-item/{id}`                                              | `DONE`         |
+| [Update Menu Item](#update-menu-item)                       | PUT    | `v1/menu-item/{id}`                                              | `DONE`         |
 | [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                              | `DONE`         |
 | [Create Menu Item Allergen](#create-menu-item-allergen)     | POST   | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
 | [List Menu Item Allergens](#list-menu-item-allergens)       | GET    | `v1/menu-item/{id}/allergens`                                    | `DONE`         |
@@ -169,7 +173,7 @@ These are all the version 1 `/v1/` endpoints available to manage restaurants, ac
 | [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
 | [Upload Menu Item Image](#upload-menu-item-image)           | PUT    | `v1/menu-item/{id}/upload`                                       | `DONE`         |
 | **Ingredient endpoints**                                    |        |                                                                  |                |
-| [Update Ingredient](#update-ingredient)                     | PUT  | `v1/ingredients/{id}`                                            | `DONE`         |
+| [Update Ingredient](#update-ingredient)                     | PUT    | `v1/ingredients/{id}`                                            | `DONE`         |
 | [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                            | `DONE`         |
 | [Upload Ingredient Image](#upload-ingredient-image)         | PUT    | `v1/ingredients/{id}/upload`                                     | `DONE`         |
 | **Allergen endpoints**                                      |        |                                                                  |                |
@@ -531,6 +535,68 @@ Updates an existing restaurant details
 }
 ```
 
+### Create Restaurant Id Alias
+
+Creates an alias for a restaurant. The alias is unique and formatted more like a username
+
+#### Auth
+
+- API key
+
+#### Request
+
+`POST - v1/restaurants/{id}/alias`
+
+**JSON BODY**
+
+
+| Key   | Required | Description                     |
+|:------|:---------|:--------------------------------|
+| alias | true     | Restaurant id alias, e.g dukkah |
+
+
+#### Example
+
+```json
+{
+  "alias": "dukkah-durban"
+}
+```
+
+#### Responses
+
+`[200 - Ok]`
+
+```json
+{
+  "data": "restaurant updated"
+}
+```
+
+`[403 - Forbidden]`
+
+```json
+{
+  "error": "explicit deny: user not permitted to modified resource"
+}
+```
+
+`[400 - Bad Request]`
+
+```json
+{
+  "error": "entry already exists"
+}
+```
+
+`[500 - InternalServerError]`
+
+```json
+{
+  "error": "an unexpected error has occurred while processing request"
+}
+```
+
 
 ### List Restaurants
 
@@ -585,9 +651,9 @@ Returns a list of unordered restaurants
 }
 ```
 
-### Get Restaurant
+### Get Restaurant By Id
 
-Gets a restaurant by its id
+Gets a restaurant by its id 
 
 #### Auth
 
@@ -604,6 +670,7 @@ Gets a restaurant by its id
 ```json
 {
   "restaurantId": "134",
+  "alias": "salt-morningside",
   "name": "SALT Morningside",
   "summary": "We make the best burgers in Morningside",
   "distance": null,
@@ -623,6 +690,67 @@ Gets a restaurant by its id
 }
 ```
 
+`[404 - Not Found]`
+```json
+{
+  "error": "Restaurant not found"
+}
+```
+`[400 - Bad Request]`
+
+`[500 - InternalServerError]`
+
+```json
+{
+  "error": "an unexpected error has occurred while processing request"
+}
+```
+
+### Get Restaurant By Alias
+
+Gets a restaurant by its alias, the alias is unique per restaurant, and it is a nullable field
+
+#### Auth
+
+- API key
+
+#### Request
+
+`GET v1/restaurants/{alias}`
+
+#### Example responses
+
+`[200 - OK]`
+
+```json
+{
+  "restaurantId": "134",
+  "alias": "salt-morningside",
+  "name": "SALT Morningside",
+  "summary": "We make the best burgers in Morningside",
+  "distance": null,
+  "imageUrl": "public/restaurants/134-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
+  "address": {
+    "addressId": "1",
+    "line1": "Florida Morningside",
+    "line2": "311 Peter Mokaba Road",
+    "city": "Durban",
+    "state": "KWAZULU_NATAL",
+    "country": "South Africa",
+    "latitude": 12.088,
+    "longitude": 12.088
+  },
+  "updated": "2022-01-02 12:19:30",
+  "created": "2022-01-02 12:19:30"
+}
+```
+
+`[404 - Not Found]`
+```json
+{
+  "error": "Restaurant not found"
+}
+```
 `[400 - Bad Request]`
 
 `[500 - InternalServerError]`
@@ -1050,6 +1178,13 @@ Creates a menu group/section/category within the main menu
 
 `POST v1/menu/{id}/menu-group`
 
+**JSON BODY**
+
+| Key       | Required | Description                    |
+|:----------|:---------|:-------------------------------|
+| name      | true     | Menu group/category name       |
+| summary   | false    | Brief summary of menu category |
+
 #### Example body
 
 ```json
@@ -1125,32 +1260,6 @@ Returns the menu of the restaurant with all associated items
           "created": "2023-04-03 20:37:23"
         },
         {
-          "menuItemId": "18",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Suicide Wings",
-          "summary": "With Blue Cheese Sauce",
-          "description": "",
-          "imageUrl": "",
-          "price": 90,
-          "ingredients": [],
-          "updated": "2023-04-03 20:40:14",
-          "created": "2023-04-03 20:40:14"
-        },
-        {
-          "menuItemId": "21",
-          "menuId": "2",
-          "menuGroupId": "9",
-          "name": "Saute Chicken Livers",
-          "summary": "Chorizo, chili flakes, creamy napoli",
-          "description": "Chorizo, chili flakes, creamy napoli",
-          "imageUrl": "",
-          "price": 80,
-          "ingredients": [],
-          "updated": "2023-04-03 21:14:48",
-          "created": "2023-04-03 20:52:12"
-        },
-        {
           "menuItemId": "22",
           "menuId": "2",
           "menuGroupId": "9",
@@ -1174,19 +1283,6 @@ Returns the menu of the restaurant with all associated items
       "summary": "",
       "items": [
         {
-          "menuItemId": "26",
-          "menuId": "2",
-          "menuGroupId": "11",
-          "name": "Pulled Braised Short-Ribs Tagliatelle",
-          "summary": "Grain mustard, home-made tagliatelle, cilantro, jus",
-          "description": "Grain mustard, home-made tagliatelle, cilantro, jus",
-          "imageUrl": "",
-          "price": 170,
-          "ingredients": [],
-          "updated": "2023-04-04 18:10:34",
-          "created": "2023-04-04 18:10:34"
-        },
-        {
           "menuItemId": "27",
           "menuId": "2",
           "menuGroupId": "11",
@@ -1198,19 +1294,6 @@ Returns the menu of the restaurant with all associated items
           "ingredients": [],
           "updated": "2023-04-04 18:11:12",
           "created": "2023-04-04 18:11:12"
-        },
-        {
-          "menuItemId": "28",
-          "menuId": "2",
-          "menuGroupId": "11",
-          "name": "Basil & Chicken Penne",
-          "summary": "Pesto, pine kernels, shaved parmesan",
-          "description": "Pesto, pine kernels, shaved parmesan",
-          "imageUrl": "",
-          "price": 145,
-          "ingredients": [],
-          "updated": "2023-04-04 18:12:01",
-          "created": "2023-04-04 18:12:01"
         },
         {
           "menuItemId": "30",
@@ -1280,6 +1363,14 @@ Updates a menu group
 #### Request
 
 `PUT v1/menu-group/{id}`
+
+
+**JSON BODY**
+
+| Key       | Required | Description                    |
+|:----------|:---------|:-------------------------------|
+| name      | true     | Menu group/category name       |
+| summary   | false    | Brief summary of menu category |
 
 #### Example body
 
@@ -1357,15 +1448,6 @@ Lists all menu groups (categories) found under a menu
 [
   {
     "menuId": "1",
-    "menuGroupId": "10",
-    "name": "Extra Value Meals",
-    "summary": "Extra Value Meals",
-    "items": null,
-    "updated": "2022-01-08 12:21:43",
-    "created": "2022-01-08 12:21:43"
-  },
-  {
-    "menuId": "1",
     "menuGroupId": "11",
     "name": "Sides",
     "summary": "Sides",
@@ -1430,6 +1512,17 @@ Create a menu item under a group/category
 #### Request
 
 `POST v1/menu-group/{id}/menu-items`
+
+
+**JSON BODY**
+
+| Key         | Required | Description                   |
+|:------------|:---------|:------------------------------|
+| name        | true     | Menu item name                |
+| summary     | true     | Brief summary of menu item    |
+| description | false    | Full details of the menu item |
+| price       | false    | Price of the item             |
+| allergens   | false    | Menu items allergens          |
 
 #### Example body
 
@@ -1507,6 +1600,16 @@ Update a menu item
 
 `PUT v1/menu-item/{id}`
 
+**JSON BODY**
+
+| Key         | Required | Description                    |
+|:------------|:---------|:-------------------------------|
+| name        | true     | Menu item name                 |
+| summary     | true     | Brief summary of menu item     |
+| description | false    | Full details of the menu item  |
+| price       | false    | Price of the item              |
+| menuGroupId | true     | Menu group the item belongs to |
+
 #### Example body
 
 ```json
@@ -1579,6 +1682,13 @@ Creates/adds an allergen to a menu item
 
 `POST v1/menu-item/{id}/ingredients`
 
+**JSON BODY**
+
+| Key         | Required | Description     |
+|:------------|:---------|:----------------|
+| name        | true     | Ingredient name |
+
+
 #### Example body
 
 ```json
@@ -1616,6 +1726,12 @@ Creates/adds an allergen to a menu item
 #### Request
 
 `POST v1/menu-item/{id}/allergens`
+
+**JSON BODY**
+
+| Key        | Required | Description                             |
+|:-----------|:---------|:----------------------------------------|
+| allergenId | true     | Allergen id, use /v1/allergens for list |
 
 #### Example body
 
@@ -1674,14 +1790,6 @@ List all ingredients of a menu item
     "menuItemId": "1",
     "name": "Regular Bun",
     "imageUrl": "public/ingredients/1-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
-    "updated": "2022-01-08 12:37:50",
-    "created": ""
-  },
-  {
-    "ingredientId": "2",
-    "menuItemId": "1",
-    "name": "Ketchup",
-    "imageUrl": "public/restaurants/2-40a1afc36b3ee3a9d4164c3c0dc3ded5.png",
     "updated": "2022-01-08 12:37:50",
     "created": ""
   }
@@ -1773,6 +1881,13 @@ Updates an ingredient of a menu item
 #### Request
 
 `PUT v1/ingredients/{id}`
+
+**JSON BODY**
+
+| Key        | Required | Description                     |
+|:-----------|:---------|:--------------------------------|
+| name       | true     | Ingredient new name             |
+| menuItemId | true     | Menu item the ingredient is for |
 
 #### Example body
 
@@ -1921,13 +2036,6 @@ Returns a list of all allergens
 `[200 - Ok]`
 ```json
 [
-  {
-    "allergenId": "1",
-    "name": "Wheat",
-    "summary": "Wheat",
-    "updated": "",
-    "created": ""
-  },
   {
     "allergenId": "2",
     "name": "Nuts",
