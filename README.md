@@ -559,7 +559,7 @@ Creates an alias for a restaurant. The alias is unique and formatted more like a
 
 ```json
 {
-  "alias": "dukkah-durban"
+  "alias": "Dukkah Durban"
 }
 ```
 
@@ -569,7 +569,7 @@ Creates an alias for a restaurant. The alias is unique and formatted more like a
 
 ```json
 {
-  "data": "restaurant updated"
+  "data": "dukkah-durban"
 }
 ```
 
