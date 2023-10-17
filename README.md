@@ -64,9 +64,10 @@
 
 # WhatsAMenu API
 
-**WhatsAMenu** (What's a menu?) is a food/drinks restaurant menu API allowing consumers to be as verbose as possible about their
-food items and drinks. It allows you to specify **categories**, **ingredients**, **allergens**. It
-even allows you to add images for menu items (dish) and each ingredient for the dish.
+In the age of digital transformation, dining out has taken a new turn with technology at its forefront. Gone are the days of flipping through traditional paper menus or scanning QR codes only to be redirected to a plain PDF file. Now, with WhatsAMenu (What's a menu?), you can dive into the world of verbose menus, offering a detailed look at what's on your plate.
+
+WhatsAMenu is a restaurant menu API that allows restaurants to describe their food items down to the finest details. Food category, ingredients, allergens, and associated images are all on display. You'll no longer have to guess what you're ordering. With this level of transparency, you can make informed choices about what you eat.
+
 
 This API only returns data in a **JSON** format. It also accepts data in **JSON** format, unless otherwise specified.
 
