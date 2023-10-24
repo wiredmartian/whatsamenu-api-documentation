@@ -198,6 +198,12 @@ Signing up for a new account
 
 #### Example body
 
+Password Policy:
+- At least 8 characters long
+- At least 1 special character (-+_!@#$%^&*.,?)
+- At least one numeric character
+- At least one lowercase and uppercase character
+
 ```json
 {
   "email": "sbu@example.com",
@@ -220,6 +226,12 @@ Signing up for a new account
 ```json
 {
   "error": "Email already exists"
+}
+```
+
+```json
+{
+  "error": "password must at least be 8 characters"
 }
 ```
 
