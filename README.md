@@ -299,7 +299,7 @@ There is **no request body required** to generate a new key
 
 ```json
 {
-  "accessKey": "WM.NFrS_pfq4_R2_bda6ZUrph9w8QqV1hrIUGe1NJ1olQ8RTO3qD2Jy_dcSqFB-3zqp"
+  "apiKey": "WM.NFrS_pfq4_R2_bda6ZUrph9w8QqV1hrIUGe1NJ1olQ8RTO3qD2Jy_dcSqFB-3zqp"
 }
 ```
 
@@ -464,7 +464,7 @@ Consists of restaurant information, and it's address including geo-coordinates (
 
 ```json
 {
-  "error": "validationError - missing required field"
+  "error": "`Name` is a required field"
 }
 ```
 
@@ -536,7 +536,7 @@ Updates an existing restaurant details
 
 ```json
 {
-  "error": "validationError - missing required field"
+  "error": "`City` is a required field"
 }
 ```
 
@@ -1038,7 +1038,7 @@ Creates a menu and associates it with a restaurant
 
 ```json
 {
-  "error": "validationError - missing required field"
+  "error": "`Name` is a required field"
 }
 ```
 
