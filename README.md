@@ -731,7 +731,7 @@ Gets a restaurant by its alias, the alias is unique per restaurant, and it is a 
 
 #### Request
 
-`GET v1/restaurants/{alias}`
+`GET v1/restaurants/{alias}/alias`
 
 #### Example responses
 
