@@ -128,6 +128,8 @@ The Bearer token is passed through the `Authorization` header. And the API key c
 
 These are all the version 1 `/v1/` endpoints available to manage restaurants, accounts and menu.
 
+Base Url: https://whatsamenu.core.wiredmartians.com
+
 
 | Action                                                      | Method | Resource                                                         | Current Status |
 |-------------------------------------------------------------|--------|------------------------------------------------------------------|----------------|
