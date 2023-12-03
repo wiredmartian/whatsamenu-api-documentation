@@ -12,8 +12,11 @@
         - [Auth & Accounts](#auth-and-accounts)
             - [Create New User Account](#new-user-account)
             - [User Login](#login-user)                   
-            - [Generate API Key](#generate-api-key)       
-            - [Generate API Key](#forgot-password)        
+            - [Create API Key](#create-api-key)
+            - [Update API Key Data](#update-api-key-data)
+            - [Get API Keys](#get-api-keys)
+            - [Get API Key By KeyAlias](#get-api-key-by-keyalias)       
+            - [Forgot Password](#forgot-password)        
             - [Forgot Password](#reset-password)
         - [Restaurants](#restaurants)
             - [List Restaurants](#list-restaurants)                  
@@ -133,13 +136,16 @@ Base Url: https://whatsamenu.core.wiredmartians.com
 
 | Action                                                      | Method | Resource                                                         | Current Status |
 |-------------------------------------------------------------|--------|------------------------------------------------------------------|----------------|
-| **Auth & Account endpoints**                                |        |                                                                  |                |
+| **Auth & Account**                                          |        |                                                                  |                |
 | [Create New User Account](#new-user-account)                | POST   | `v1/auth/sign-up`                                                | `DONE`         |
 | [User Login](#login-user)                                   | POST   | `v1/auth/sign-in`                                                | `DONE`         |
-| [Generate API Key](#generate-api-key)                       | POST   | `v1/auth/api-key`                                                | `DONE`         |
-| [Generate API Key](#forgot-password)                        | POST   | `v1/auth/forgot-password`                                        | `DONE`         |
-| [Forgot Password](#reset-password)                          | POST   | `v1/auth/reset-password`                                         | `DONE`         |
-| **Restaurant endpoints**                                    |        |                                                                  |                |
+| [Create API Key](#create-api-key)                           | POST   | `v1/auth/api-key`                                                | `DONE`         |
+| [Update API Key Data](#update-api-key-data)                 | PATCH  | `v1/auth/api-key/{id}`                                           | `DONE`         |
+| [Get API Keys](#get-api-keys)                               | GET    | `v1/auth/api-key`                                                | `DONE`         |
+| [Get API Key By KeyAlias](#get-api-key-by-alias)            | GET    | `v1/auth/api-key/{id}`                                           | `DONE`         |
+| [Forgot Password](#forgot-password)                         | POST   | `v1/auth/forgot-password`                                        | `DONE`         |
+| [Reset Password](#reset-password)                           | POST   | `v1/auth/reset-password`                                         | `DONE`         |
+| **Restaurant**                                              |        |                                                                  |                |
 | [List Restaurants](#list-restaurants)                       | GET    | `v1/restaurants`                                                 | `IN PROGRESS`  |
 | [Create Restaurant](#new-restaurant)                        | POST   | `v1/restaurants`                                                 | `DONE`         |
 | [Update Restaurant](#update-restaurant)                     | PUT    | `v1/restaurants`                                                 | `DONE`         |
@@ -154,18 +160,18 @@ Base Url: https://whatsamenu.core.wiredmartians.com
 | [Create Restaurant Menu](#create-restaurant-menu)           | POST   | `v1/restaurants/{id}/menu`                                       | `DONE`         |
 | [Get Restaurant QR Code](#get-restaurant-qr-code)           | GET    | `v1/restaurants/{id}/qrcode`                                     | `DONE`         |
 | [Upload Restaurant Banner](#upload-restaurant-banner)       | PUT    | `v1/restaurants/{id}/upload`                                     | `DONE`         |
-| **Menu endpoints**                                          |        |                                                                  |                |
+| **Menu**                                                    |        |                                                                  |                |
 | [Get Menu](#get-menu)                                       | GET    | `v1/menu/{id}`                                                   | `DONE`         |
 | [Ask About Menu](#ask-about-menu)                           | GET    | `v1/menu/enquire?menuId={menuId}&userId={userId}&prompt={query}` | `IN PROGRESS`  |
 | [Delete Menu](#delete-menu)                                 | DELETE | `v1/menu/{id} `                                                  | `DONE`         |
 | [Create Menu Group](#create-menu-group)                     | POST   | `v1/menu/{id}/menu-group`                                        | `DONE`         |
 | [List Menu Groups](#list-menu-groups)                       | GET    | `v1/menu/{id}/menu-group`                                        | `DONE`         |
-| **Menu Group endpoints**                                    |        |                                                                  |                |
+| **Menu Group**                                              |        |                                                                  |                |
 | [Update Menu Group](#update-menu-group)                     | PUT    | `v1/menu-group/{id}`                                             | `DONE`         |
 | [Delete Menu Group](#delete-menu-group)                     | DELETE | `v1/menu-group/{id}`                                             | `DONE`         |
 | [Create Grouped Menu Item](#create-grouped-menu-item)       | POST   | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
 | [List Grouped Menu Items](#list-grouped-menu-items)         | GET    | `v1/menu-group/{id}/menu-items`                                  | `DONE`         |
-| **Menu Item endpoints**                                     |        |                                                                  |                |
+| **Menu Item**                                               |        |                                                                  |                |
 | [Get Menu Item](#get-menu-item)                             | GET    | `v1/menu-item/{id}`                                              | `DONE`         |
 | [Update Menu Item](#update-menu-item)                       | PUT    | `v1/menu-item/{id}`                                              | `DONE`         |
 | [Delete Menu Item](#delete-menu-item)                       | DELETE | `v1/menu-item/{id}`                                              | `DONE`         |
@@ -175,11 +181,11 @@ Base Url: https://whatsamenu.core.wiredmartians.com
 | [Create Menu Item Ingredient](#create-menu-item-ingredient) | POST   | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
 | [List Menu Item Ingredients](#list-menu-item-ingredients)   | GET    | `v1/menu-item/{id}/ingredients`                                  | `DONE`         |
 | [Upload Menu Item Image](#upload-menu-item-image)           | PUT    | `v1/menu-item/{id}/upload`                                       | `DONE`         |
-| **Ingredient endpoints**                                    |        |                                                                  |                |
+| **Ingredient**                                              |        |                                                                  |                |
 | [Update Ingredient](#update-ingredient)                     | PUT    | `v1/ingredients/{id}`                                            | `DONE`         |
 | [Delete Ingredient](#delete-ingredient)                     | DELETE | `v1/ingredients/{id}`                                            | `DONE`         |
 | [Upload Ingredient Image](#upload-ingredient-image)         | PUT    | `v1/ingredients/{id}/upload`                                     | `DONE`         |
-| **Allergen endpoints**                                      |        |                                                                  |                |
+| **Allergen**                                                |        |                                                                  |                |
 | [List Allergens](#list-allergens)                           | GET    | `v1/allergens`                                                   | `DONE`         |
 | [Get Allergen](#get-allergen)                               | GET    | `v1/allergens/{id}`                                              | `DONE`         |
 
@@ -278,10 +284,9 @@ Login user into the API
 ```
 
 
-### Generate API Key
+### Create API Key
 
-Generates a new API Key. **WARN**: a user and API key exist in a **one-to-one** relationship.
-Generating a new key invalidates any previously existing key for a user.
+Creates a new API key
 
 #### Auth
 
@@ -314,6 +319,106 @@ There is **no request body required** to generate a new key
   "error": "Cannot perform this action at this time"
 }
 ```
+
+### Get API Keys
+
+Gets the user's API Keys
+
+#### Auth
+- Bearer
+- or API Key
+
+#### Request
+
+`GET v1/auth/api-keys`
+
+#### Responses 
+
+`[200 - OK]`
+
+```json
+[
+    {
+        "name": "",
+        "keyAlias": "df6088dc-be04-4c9f-95d4-cf3ee0cbac63",
+        "userId": "18",
+        "status": "ENABLED"
+    },
+    {
+        "name": "my website",
+        "keyAlias": "f2124c83-489c-498c-8f02-373ebb9e4dc1",
+        "userId": "18",
+        "status": "DISABLED"
+    }
+]
+
+```
+
+### Get API Key By KeyAlias
+
+Gets the user's API Key by key alias
+
+#### Auth
+- Bearer
+- or API Key
+
+#### Request
+
+`GET v1/auth/api-keys/{keyAlias}`
+
+#### Responses 
+
+`[200 - OK]`
+
+```json
+  {
+      "name": "app.wiredmartians.com",
+      "keyAlias": "df6088dc-be04-4c9f-95d4-cf3ee0cbac63",
+      "userId": "18",
+      "status": "ENABLED"
+  }
+```
+
+### Update API Key Data
+
+Updates API key data such as name and status
+
+#### Auth
+- API Key
+
+#### Request
+
+`PATCH v1/auth/api-keys/{keyAlias}`
+
+#### Example
+
+```json
+{
+  "name": "my website",
+  "status": "ENABLED"
+}
+```
+
+#### Responses
+
+`[200 - OK]`
+
+```json
+{
+    "keyAlias": "10509d04-d865-4270-80b7-65c035d47f0c",
+    "name": "whatsamenu red website.io",
+    "status": "ENABLED"
+}
+```
+
+`[400 - Bad Request]`
+
+```json
+{
+  "error": "api key does not exist"
+}
+```
+
 
 ### Forgot Password
 
