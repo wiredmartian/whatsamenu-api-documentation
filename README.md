@@ -297,8 +297,13 @@ Creates a new API key
 `POST v1/auth/api-key`
 
 #### Example
+The `name` field is **Optional**
 
-There is **no request body required** to generate a new key
+```json
+{
+    "name": "My iOS App Key"
+}
+```
 
 #### Responses
 
